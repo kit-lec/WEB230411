@@ -12,9 +12,16 @@ public class Switch02Main {
 
 		int num = 99;
 
-		// TODO
-		
-		
+		switch(num % 2){
+			case 0:
+				System.out.println("짝수");
+				break;
+			case 1:
+				System.out.println("홀수");
+				break;
+		}
+
+
 		System.out.println("\n프로그램 종료");
 	} // end main()
 

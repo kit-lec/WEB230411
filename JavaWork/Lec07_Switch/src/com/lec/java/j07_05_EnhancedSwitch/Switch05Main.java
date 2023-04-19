@@ -36,7 +36,15 @@ public class Switch05Main {
         System.out.println("-".repeat(20));
 
         // 화살표 case 라벨과 다중 케이스 라벨
-        // TODO
+        switch (day){
+            case MONDAY, FRIDAY, SUNDAY -> System.out.println(6);  // 화살표 case라벨 사용하면 break 없어도 됨.
+            case TUESDAY -> {  // 여러문장 수행시 블럭으로 묶기
+                System.out.println("목요일");
+                System.out.println(7);
+            }
+            case THURSDAY, SATURDAY -> System.out.println(8);
+            case WEDNESDAY -> System.out.println(9);
+        }
 
         System.out.println("\n프로그램 종료");
     } // end main()

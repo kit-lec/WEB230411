@@ -7,9 +7,10 @@ public class If08Main {
 
 	public static void main(String[] args) {
 		System.out.println("실수 비교 연산");
-		// TODO
-		
-		
+
+		System.out.println(0.1 + 0.2 == 0.3);
+
+
 		System.out.println("\n프로그램 종료");
 	} // end main()
 

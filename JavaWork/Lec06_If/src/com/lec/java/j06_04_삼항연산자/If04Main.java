@@ -9,8 +9,27 @@ public class If04Main {
 
 	public static void main(String[] args) {
 		System.out.println("if 문과 삼항 연산자");
-		
-		// TODO
+
+		int num1 = 123, num2 = 300;
+		int big;
+
+//		if(num1 > num2){
+//			big = num1;
+//		} else {
+//			big = num2;
+//		}
+
+		big = (num1 > num2) ? num1 : num2;
+
+		System.out.println("더 큰 수: " + big);
+
+		System.out.println();
+
+		int num3 = 10;
+		int num4 = 25;
+
+		int diff = (num3 > num4) ? (num3 - num4) : (num4 - num3);
+		System.out.println("두 수의 차: " + diff);
 
 		System.out.println("\n프로그램 종료");
 	} // end main()

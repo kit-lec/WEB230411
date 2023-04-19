@@ -12,15 +12,43 @@ public class Switch03Main {
 	public static void main(String[] args) {
 		System.out.println("switch 제약 조건");
 		System.out.println("char를 switch문에서 사용");
-		// TODO
-		
-		
+		char ch = 'C';
+		switch (ch){
+			case 'a':
+				System.out.println("A");
+				break;
+			case 'b':
+				System.out.println("B");
+				break;
+			case 'c':
+				System.out.println("C");
+				break;
+			default:
+				System.out.println("몰라요!");
+		}
+
+
 		// switch(조건) 에 사용할수 없는 값들
-		// TODO
+//		switch(3.14){}
+//		switch(10L){}
+		switch((int)3.14){}
 
 
 		System.out.println("String 타입을 switch에서 사용하기");
-		// TODO
+		String language = "Java";
+		String result;
+		switch (language){
+			case "Java":
+				result = "자바"; break;
+			case "C++":
+				result = "씨뿔뿔"; break;
+			case "Python":
+				result = "파이썬"; break;
+			default:
+				result = "모르는 언어";
+		}
+		System.out.println("결과: " + result);  // 위에서 default 빼면 에러!
+
 
 		System.out.println("\n프로그램 종료");
 	} // end main()

@@ -24,20 +24,28 @@ public class If02Main {
 
 	public static void main(String[] args) {
 		System.out.println("if - else if - else");
-		
-		// TODO
-		
-		
+
+
 		// 1. 평균이 90점 이상이면 A학점 (평균: 90 ~ 100)
 		// 2. 평균이 80점 이상이면 B학점 (평균: 80 ~ 89)
 		// 3. 평균이 70점 이상이면 C학점 (평균: 70 ~ 79)
 		// 4. 평균이 60점 이상이면 D학점 (평균: 60 ~ 69)
 		// 5. 평균이 60점 미만이면 F학점
-		
-		
-		// TODO
-		
-		
+
+		double average = 55.3;
+		if(average >= 90){
+			System.out.println("A학점");
+		} else if(average >= 80) {
+			System.out.println("B학점");
+		} else if(average >= 70) {
+			System.out.println("C학점");
+		} else if(average >= 60){
+			System.out.println("D학점");
+		} else {
+			System.out.println("F학점");
+		}
+
+		// ※ 도전 : 선택-자가4
 
 		System.out.println("\n프로그램 종료");
 	} // end main()
