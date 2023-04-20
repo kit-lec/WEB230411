@@ -45,9 +45,12 @@ public class Switch06Main {
 
         // switch expressions(식) 사용
         {
-            int numLetters = 0;
-
-            // TODO
+            int numLetters = switch(day){  // case 라벨(->) 뒤에 있는 값을 결괏값으로 리턴
+                case MONDAY, FRIDAY, SUNDAY -> 6;
+                case TUESDAY -> 7;
+                case THURSDAY, SATURDAY -> 8;
+                case WEDNESDAY -> 9;
+            };
 
             System.out.println("numLetters: " + numLetters);
         }
@@ -55,12 +58,18 @@ public class Switch06Main {
         System.out.println("-".repeat(20));
 
         // yield 키워드 사용
-        // switch 연산식에서 길이를 return하기 전에 특정 메시지를 출력하고 싶으면 yield 사용
+        // switch 연산식에서 값을 리턴하기 전에 특정 문장을 수행하고 싶으면 yield 사용
         {
             day = Day.MONDAY;
-            int numLetters = 0;
-
-            // TODO
+            int numLetters = switch(day){
+                case MONDAY, FRIDAY, SUNDAY -> {
+                    System.out.println("여섯글자!");
+                    yield  6;     // yield 는 블럭 안에서만 사용 가능!
+                }
+                case TUESDAY -> 7;
+                case THURSDAY, SATURDAY -> 8;
+                case WEDNESDAY -> 9;
+            };
 
             System.out.println("numLetters: " + numLetters);
         }
@@ -69,10 +78,14 @@ public class Switch06Main {
 
         // switch 식에선 enum타입(열거타입)을 사용하는 이유
         {
-            String s = "MONDAY";           // string 의 경우
-            int numLetters = 0;
-
-            // TODO
+            String s = "MONDAY";           // string 의 경우. 모든 경우 값을 리턴하기 위해선 default 꼭 필요
+            int numLetters = switch(s){
+                case "MONDAY", "FRIDAY", "SUNDAY" -> 6;
+                case "TUESDAY"					-> 7;
+                case "THURSDAY, SATURDAY"		-> 8;
+                case "WEDNESDAY"				-> 9;
+                default   -> -1;
+            };
 
             System.out.println("numLetters: " + numLetters);
         }
