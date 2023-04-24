@@ -20,18 +20,77 @@ package com.lec.java.j12_06_overloading;
 
  */
 
-public class Method06Main {
+public class Method06Main {  // 클래스 이름위에서 ALT+7 : structure
 
 	public static void main(String[] args) {
 		System.out.println("Method Overloading (메소드 중복 정의)");
-		
-		// TODO
-		
+
+		sayHello();
+		sayHello("임승형");
+		sayHello(20);
+		sayHello("이재우", 20);
+		//sayHello("이재우", "박상배");
+
+		sayHello('A');  // -> 자동형변환 -> sayHello(int)
+		byte b = 10;
+		sayHello(b);  // -> sayHello(int)
+
+
+		// 메소드 오버로딩의 장점
+		System.out.println(10);   // printIntln
+		System.out.println(3.14);  // printDouble
+		System.out.println("hello");  // printString
+		System.out.println(true);
+		System.out.println(new int[]{10, 20, 30});
+
 		System.out.println("\n프로그램 종료");
 	} // end main()
-	
-	// TODO
-	
+
+
+	// 1.
+	public static void sayHello(){
+		System.out.println("sayHello() 호출");
+		System.out.println("안녕하세요");
+	}
+
+	// 리턴타입 다르다고 오버로딩 되지 않는다.
+//	public static int sayHello(){
+//		return 0;
+//	}
+
+	// 2.
+	public static void sayHello(String name){
+		System.out.println("sayHello(String) 호출");
+		System.out.println("Hi~");
+		System.out.println("제 이름은 " + name + "이예요~");
+	}
+
+	// 3-1
+	public static void sayHello(int age){
+		System.out.println("sayHello(int) 호출");
+		System.out.println("내 나이는 " + age);
+	}
+
+	// 3-2
+	public static void sayHello(short age){
+		System.out.println("sayHello(short) 호출");
+		System.out.println("내 나이는 " + age);
+	}
+
+	// 4
+	public static void sayHello(String name, int age){
+		System.out.println("sayHello(String, int) 호출");
+		System.out.println("헬로~");
+		System.out.println("이름: " + name);
+		System.out.println("나이: " + age);
+	}
+
+	public static void sayHello(int age, String name){
+		System.out.println("sayHello(int, String) 호출");
+		System.out.println("헬로~");
+		System.out.println("이름: " + name);
+		System.out.println("나이: " + age);
+	}
 } // end class
 
 

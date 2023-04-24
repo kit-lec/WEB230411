@@ -57,9 +57,16 @@ public class Method01Main {
 		sayHello("정예경");
 		sayHello("짐꾼");
 
+		System.out.println();
+		sayAge(16);
+		sayAge(20);
 
-		// TODO
+		System.out.println();
+		sayHello2("코딩쌤", 20);
+		sayHello2("황기석", 27);
 
+		System.out.println();
+		sayHello3("가오갤", 14);
 
 		System.out.println("\n프로그램 종료");
 	} // end main()
@@ -81,6 +88,30 @@ public class Method01Main {
 	public static void sayHello(String name){  // 매개변수
 		System.out.println("안녕하세요");
 		System.out.println("제 이름은 " + name + " 입니다.");
+	}
+
+	// 메소드 이름: sayAge
+	// 매개변수: int 타입의 age
+	// 리턴타입: void(리턴값이 없다)
+	public static void sayAge(int age){
+		System.out.println("Hi~");
+		System.out.println("제 나이는 " + age + " 입니다.");
+	} //  end sayAge()
+
+	// 메소드 이름: sayHello2
+	// 매개변수:
+	//   1) String name
+	//   2) int age
+	// 리턴타입: void
+	public static void sayHello2(String name, int age){
+		System.out.println("안녕!");
+		System.out.println("내 이름은 " + name + " 입니다");
+		System.out.println("내 나이는 " + age + "살 입니다");
+	}
+
+	public static void sayHello3(String name, int age){
+		sayHello(name);
+		sayAge(age);
 	}
 
 } // end class
