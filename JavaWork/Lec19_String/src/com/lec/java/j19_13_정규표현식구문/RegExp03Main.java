@@ -37,66 +37,118 @@ public class RegExp03Main {
 		
 		//─────────────────────────────────────────
 		title = "^ : 바로 문자뒤의 문자열로 시작됨";
-		regex = ""; // TODO
+		regex = "^The"; // The 로 시작하는 패턴
 		arrInput = new String[] {
-				// TODO
+				"The Things",
+				"On The Things",
+				" The The The",
+				"There you go"
 		};
 		
 		//─────────────────────────────────────────
-//		title = "$ : 문자열의 마지막이 이 문자열로 마무리 됨";
-//		regex = ""; // TODO
-//		arrInput = new String[] {
-//				// TODO
-//		};
+		title = "$ : 문자열의 마지막이 이 문자열로 마무리 됨";
+		regex = "Man$"; // Man 으로 끝나는 패턴
+		arrInput = new String[] {
+				"SuperMan",
+				"AquaMan",
+				"WonderWoman",
+				"WonderWoMan",
+				"PostMan "
+
+		};
 			
 		//─────────────────────────────────────────
-//		title = "^표현식$ : 정확하게 전체패턴매칭되는 문자열";
-//		regex = ""; // TODO
-//		arrInput = new String[] {
-//				// TODO
-//		};
+		title = "^표현식$ : 정확하게 전체패턴매칭되는 문자열";
+		regex = "^SuperMan$"; // TODO
+		arrInput = new String[] {
+				"SuperMan",
+				"Super Man",
+				" SuperMan",
+				"SuperMan "
+
+		};
 		
 		//─────────────────────────────────────────
-//		title = " . : 어떤 문자든지 임의의 '한문자'를 말한다.꼭 하나의 문자와 매칭";
-//		regex = ""; // TODO
-//		arrInput = new String[] {
-//				// TODO
-//		};
+		title = " . : 어떤 문자든지 임의의 '한문자'를 말한다.꼭 하나의 문자와 매칭";
+		regex = "x.z";
+		arrInput = new String[] {
+				"xyz",
+				"xxzdfdk",
+				"aa10x9zbxbz",
+				"xz",
+				"90x zxx_zdf",
+				"xbz",
+				"xyyz"
+		};
 		
 		//─────────────────────────────────────────
-//		title = " * : 바로 앞의 문자가 없거나 한개 이상의 경우를 매칭";
-//		regex = ""; // TODO
-//		arrInput = new String[] {
-//				// TODO
-//		};
+		title = " * : 바로 앞의 문자가 없거나 한개 이상의 경우를 매칭";
+		regex = "ab*"; //
+		arrInput = new String[] {
+				"a",  // 1
+				"abc", // 2
+				"ab", // 3
+				"abbbaaaabababbab", // 4
+				"bbba",  // 5
+				"cdef"  // 6
+		};
 		
 		//─────────────────────────────────────────
-//		title = " + : 바로 앞의 문자를 나타내면 꼭 한개 혹은 그 이상을 매칭";
-//		regex = ""; // TODO
-//		arrInput = new String[] {
-//				// TODO
-//		};
+		title = " + : 바로 앞의 문자를 나타내면 꼭 한개 혹은 그 이상을 매칭";
+		regex = "ab+";
+		arrInput = new String[] {
+				"a",  // 1
+				"abc", // 2
+				"ab", // 3
+				"abbbaaaabababbab", // 4
+				"bbba",  // 5
+				"cdef"  // 6
+		};
 		
 		//─────────────────────────────────────────
-//		title = " ? : 바로 앞의 문자가 한개 있거나 없는것을 매칭";
-//		regex = ""; // TODO
-//		arrInput = new String[] {
-//				// TODO
-//		};
+		title = " ? : 바로 앞의 문자가 한개 있거나 없는것을 매칭";
+		regex = "ab?"; // TODO
+		arrInput = new String[] {
+				"a",  // 1
+				"abc",  // 2
+				"kkabcc",  // 3
+				"abbbaaaabababbab", // 4
+				"bbba"  // 5
+		};
 
 		//─────────────────────────────────────────
-//		title = " [] : 안에 존재하는 문자들중 한 문자만을 매칭";
-//		regex = ""; // TODO
-//		arrInput = new String[] {
-//				// TODO
-//		};
+		title = " [] : 안에 존재하는 문자들중 한 문자만을 매칭";
+		regex = "[abc]"; // a 또는 b 또는 c 중에 한문자에 매칭
+		arrInput = new String[] {
+				"able", // 1
+				"bible",  // 2
+				"cable",  // 3
+				"xenosys", // 4
+		};
+		regex = "[abc]+";
+		regex = "[a-z]+";  // a 부터 z 까지
+
+		arrInput = new String[] {
+				"abc100",
+				"abcDefGHIUJ-KLM123opQrstuz"
+		};
+
+		regex = "[a-zA-Z]+";
+		regex = "[a-zA-Z0-9]+";
+		regex = "[a-zA-Z0-9-]+";
+		regex = "[0-9]+";
 
 		//─────────────────────────────────────────
-//		title = " {} : 앞에 있는 문자나 문자열의 등장개수를 정함";
-//		regex = ""; // TODO
-//		arrInput = new String[] {
-//				// TODO
-//		};
+		title = " {} : 앞에 있는 문자나 문자열의 등장개수를 정함";
+		regex = "ab{2}"; // TODO
+		arrInput = new String[] {
+				"abb",
+				"abbb",
+				"abbbabbbbbbbbabaabab",
+		};
+
+		regex = "ab{2,}";  // b의 개수가 2개이상
+		regex = "ab{3,5}";  // b가 3개에서 5개까지 매칭
 		
 		//─────────────────────────────────────────
 //		title = " () : ()안에 있는 글자들을 그룹화 ";
@@ -113,18 +165,20 @@ public class RegExp03Main {
 //		};
 		
 		//─────────────────────────────────────────
-//		title = "(?i)  : 대소문자 구분안하고 매칭 ";  // 타 언어 정규표현식과 다름
-//		regex = ""; // TODO
-//		arrInput = new String[] {
-//				// TODO
-//		};
+		title = "(?i)  : 대소문자 구분안하고 매칭 ";  // 타 언어 정규표현식과 다름
+		regex = "(?i)abc";
+		arrInput = new String[] {
+				"abc", "Abc", "ABC"
+		};
 		
 		//─────────────────────────────────────────
-//		title = "\\s : 공백,  \\S : 공백아닌 문자";  // 공백 : 띄어쓰기, \n, \t, \r ... 
-//		regex = ""; // TODO
-//		arrInput = new String[] {
-//				// TODO
-//		};
+		title = "\\s : 공백,  \\S : 공백아닌 문자";  // 공백 : 띄어쓰기, \n, \t, \r ...
+		regex = "\\s+";
+		arrInput = new String[] {
+				"Hello My World",
+				"He \tllo My World",
+				"\n\t Hello My World\n\n",
+		};
 		
 		//─────────────────────────────────────────
 //		title = "\\w : 알파벳이나 숫자, \\W 알파벳이나 숫자를 제외한 문자";

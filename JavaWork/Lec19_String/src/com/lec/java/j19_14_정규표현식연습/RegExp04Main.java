@@ -1,6 +1,7 @@
 package com.lec.java.j19_14_정규표현식연습;
 
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 /* 정규표현식 연습
  * 
@@ -34,9 +35,21 @@ public class RegExp04Main {
 	public static void main(String[] args) {
 		System.out.println("정규표현식 예제");
 		Scanner sc = new Scanner(System.in);
-		
-		// TODO
-		
+
+		String regex = "^[a-zA-Z]{2}-[1-9][0-9]{3}-[1-9][0-9]{2}-[a-zA-Z]{3}$";
+		String input;
+
+		while(true){
+			input = sc.nextLine();
+			if(input.equalsIgnoreCase("quit")) break;
+
+			if(Pattern.matches(regex, input)){
+				System.out.println("유효한 쿠폰입니다");
+			} else {
+				System.out.println("유효한 쿠폰이 아닙니다");
+			}
+		}
+
 		sc.close();
 		System.out.println("프로그램 종료");
 	} // end main
