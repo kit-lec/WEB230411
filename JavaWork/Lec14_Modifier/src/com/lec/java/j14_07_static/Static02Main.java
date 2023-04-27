@@ -12,6 +12,28 @@ public class Static02Main {
 	public static void main(String[] args) {
 		System.out.println("인스턴스 변수/메소드");
 
+		Test.show2();
+		Test.sNum = 123;
+		Test.show2();
+
+		//Test.num = 10;
+
+		Test t = new Test();
+		t.num = 100;
+		t.show();
+
+		Test t2 = new Test();
+		t2.show();
+
+		Test.sNum = 987;
+		t.show();
+		t2.show();
+
+		t2.sNum = 340;  // 가능하긴 하나... static 은 static 방법으로 사용하자!!
+		t.show();
+
+
+
 		
 	} // end main()
 
