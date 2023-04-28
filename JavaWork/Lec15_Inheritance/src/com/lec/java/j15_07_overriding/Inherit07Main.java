@@ -16,13 +16,13 @@ public class Inherit07Main {
 
 	public static void main(String[] args) {
 		System.out.println("상속: Method Overriding(재정의)");
-		
+
 		System.out.println();
 		// Person 클래스의 인스턴스 생성
 		Person p1 = new Person();
 		p1.setName("abc");
 		p1.showInfo();
-		
+
 		System.out.println();
 		// BusinessPerson 클래스의 인스턴스를 생성
 		BusinessPerson p2 = new BusinessPerson();
@@ -31,8 +31,8 @@ public class Inherit07Main {
 		p2.showInfo();
 
 
-		// TODO
-		
+		System.out.println(p2);  // toString() 값
+
 		System.out.println("\n프로그램 종료");
 	} // end main()
 } // end class

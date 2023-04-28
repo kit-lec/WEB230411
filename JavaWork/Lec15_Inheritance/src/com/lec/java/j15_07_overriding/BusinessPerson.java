@@ -25,4 +25,22 @@ public class BusinessPerson extends Person{
     public void showInfo(int id){
 
     }
+
+
+    // IntelliJ 에선
+    // CTRL + O 를 누르면 Override 진행
+    @Override
+    public String toString() {
+        return "BusinessPerson: " + getName() + " " + company;
+    }
 }
+
+
+
+
+
+
+
+
+
+
