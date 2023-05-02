@@ -14,18 +14,38 @@ package com.lec.java.j18_06_throws;
  */
 public class Exception06Main {
 
-	public static void main(String[] args) /* TODO */ {
+	public static void main(String[] args) throws Exception {
 		System.out.println("throws");
 		
 		System.out.println();
 		TestClass test = new TestClass();
 		int result = test.divide(123, 0);
 		System.out.println("result = " + result);
-		
-		
-		// TODO
-		
-		
+
+		System.out.println();
+		// divide2() 메소드가 throw Exception을 하고 있기 때문에
+		// 메소드를 호출하는 곳에서 예외 처리를 해 주지 않으면 컴파일 에러
+		// 반드시 메소드 호출하는 곳에서 예외 처리를 해 주어야 함.
+		// 이러한 예외를 'checked exception' 이라 한다
+		try {
+			test.divide2(123, 0);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		test.divide2(111, 10); // 만약에 try-catch 안할거면 main 메소드가 throws Exception 을 해줘야 한다.
+								// main() 메소드는 가상머신이 호출하는 메소드이다.  예외상황 처리는 가상머신에게 넘어간다
+								// 가상머신의 예외처리 순서
+								//    1 : getMessage 호출
+								//    2 : 예외상황이 발생해서 전달되는 과정 출력
+								//	  3 : 프로그램 종료
+
+		// RuntimeException 및 그 자식 객체들을
+		// throws 하는 경우는 반드시 handling 안해줘도 에러는 안난다.
+		test.divide3(222, 10);
+
+		//Thread.sleep(1000);
+
 		System.out.println("프로그램 종료...");
 
 	} // end main()
