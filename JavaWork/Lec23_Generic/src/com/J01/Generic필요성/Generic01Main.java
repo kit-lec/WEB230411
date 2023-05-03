@@ -34,7 +34,13 @@ public class Generic01Main {
 
 		// TODO
 		// 사과, 바나나를 각각 담는 FruitBox<> 생성하고 pullOut 해보기
+		Apple a2 = new Apple(200);
+		FruitBox<Apple> appleBox2 =  new FruitBox<>(a2);  // 타입 생략해도 동작
+		appleBox2.pullOut().displayWeight();
 
+		Banana b2 = new Banana(300);
+		FruitBox<Banana> bananaBox2 = new FruitBox<>(b2);
+		bananaBox2.pullOut().displayNum();
 
 		System.out.println("\n프로그램 종료");
 	} // end main()
