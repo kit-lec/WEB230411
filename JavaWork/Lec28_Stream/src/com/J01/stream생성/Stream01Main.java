@@ -31,6 +31,18 @@ import java.util.stream.Stream;
  *   스트림이 닫히면 해당 스트림을 재사용할 수 없기 때문에 스트림을 다시 생성해야한다.
  *   스트림의 생성은 stream(), of() 메서드를 이용해 컬렉션, 배열 등 다양한 곳에서 생성이 가능하다.
  *   stream()은 컬렉션 인터페이스의 기본 메서드로 정의되어 있다. Stream.of()를 통해 생성하는 것이 가능하다.
+ *
+ *   Stream<T> ← 일반(generic) stream
+ *
+ *   IntStream, DoubleStream, LongStream ← primitive type stream 3개 제공
+ *
+ *   boxed stream         primitive stream
+ *   ------------------------------------
+ *   Stream<Integer>     IntStream
+ *   Stream<Double>      DoubleStream
+ *   Stream<Long>        LongStream
+ *
+ *
  */
 
 public class Stream01Main {
