@@ -26,29 +26,39 @@ HTML 에서 element 를 식별하는 수단 3가지 (attribute)
 <body>
 	<style>
 		/*  모든 p element  에 적용 */
-		TODO
+		p {
+			font-size: 200%;
+		}
 		
 		/* id=demo 인 p element 에 적용 */
-		TODO
+		p#demo {
+			background-color: cyan;
+		}
 		
 		/* class 에 c1 을 가진 p element 에 적용 */
-		TODO
+		p.c1 {
+			color: red;
+		}
 		
 		/* class 에 c2 을 가진 p element 에 적용 */
-		TODO
+		p.c2 {
+			background-color: yellow;
+		}
 		
 		/* class 에 c1 과 c2 를 모두 가진 p element 에 적용 */
-		TODO
+		p.c1.c2 {
+			border: 2px dashed limegreen;
+		}
 		
 	</style>
-	<p>id = demo</p>
-	<p>class="c1"</p>
-	<p>class="c2"</p>
-	<p>class="c1 c2"</p>
+	<p id="demo">id = demo</p>
+	<p class="c1">class="c1"</p>
+	<p class="c2">class="c2"</p>
+	<p class="c1 c2">class="c1 c2"</p>
 
-	<p>id = demo 또?</p>
+	<p id="demo">id = demo 또?</p>
 
-	아이디: <input type="text" size="20">
+	아이디: <input type="text" name="userid" size="20">
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </body>

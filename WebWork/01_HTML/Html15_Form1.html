@@ -7,7 +7,7 @@
 <!-- 
 	<form> 안에 있는 form element 들의 내용들만! 서버로 전달됩니다.
 	이때 전달되는(받는) 곳은 서버의 특정 페이지가 되며, 이렇게 전달하는 것을
-	'submit' 한다고 합니다 
+	'submit(제출)' 한다고 합니다 
 	
 	<form> 에 사용되는 중요한 attribute 는
 	
@@ -45,8 +45,27 @@
 
 <body>
 
-<!-- TODO -->
+<form action="https://www.w3schools.com/action_page.php" method="GET">
+	First name: <br>
+	<input type="text" name="firstname" value="미키"><br>
+	Last name: <br>
+	<input type="text" name="lastname" value="마우스"><br>
+	<br>
+	<input type="submit" value="보내기">
+</form>
 
+<hr>
+
+<form action="https://www.w3schools.com/action_page.php" method="POST">
+	First name: <br>
+	<input type="text" name="firstname" value="미키"><br>
+	Last name: <br>
+	<input type="text" name="lastname" value="마우스"><br>
+	Last name: <br>
+	<input type="text" name="lastname" value="루크"><br>
+	<br>
+	<input type="submit" value="보내기">
+</form>
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </body>

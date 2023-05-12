@@ -60,9 +60,9 @@
 
 <br>
 <!-- display:block 요소 에는 width, height 가 적용됨 -->
-<div style="background-color: lime; padding: 5px; /* TODO */">
+<div style="background-color: lime; padding: 5px; width:300px; height:250px;">
 	div 요소입니다
-	<div style="background-color: yellow;">div안의 div 입니다</div>
+	<div style="background-color: yellow; width:200px; height:80px">div안의 div 입니다</div>
 	<div style="background-color: pink;">div안의 div 입니다</div>
 	<div style="background-color: violet;">div안의 div 입니다</div>
 </div>
@@ -71,32 +71,43 @@
 
 <span style="background-color: lime; padding: 5px;">
 	span 요소입니다
-	<span style="background-color: yellow;">span안의 span</span>
+	<span style="background-color: yellow; width:100px; height:100px;">span안의 span</span>
 </span>
 
 <br><br>
 <hr>
 
-<div style="/* TODO */">
+<div style="background-color: cyan; display:inline;">
 	lnline 적용된 div 입니다
 </div>
 
 <br><br>
 
-<span style="/* TODO */">
+<span style="background-color: cyan; display:block">
 	block 적용된 span 입니다
 </span>
+
+<span style="background-color: cyan; display:none">
+	display:none 
+</span>
+
 
 <br><hr>
 <h2>inline-block</h2>
 <style>
 	/* inline-block 예제 */ 
 	.nav { /* nav 라는 class 를 가진 element 에 적용 */
-		/* TODO */
+		list-style-type: none;
+		background-color: yellow;
+		margin: 0;
+		padding: 0;
+		text-align: center;
 	}
 	
 	.nav li {
-		/* TODO */
+		font-size:20px;
+		padding: 20px;
+		display: inline-block;
 	}
 </style>
 <ul class="nav">
