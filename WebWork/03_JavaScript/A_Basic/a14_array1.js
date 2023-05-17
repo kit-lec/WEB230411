@@ -1,4 +1,4 @@
-/* 배멸 array 타입
+/* 배열 array 타입
     여러개의 데이터를 담는 집합자료형
     
     array literal 은   [item1, item2, ...   ]  으로 만든다
@@ -30,18 +30,38 @@
  *  방법1 : [ ... ] 
  *  방법2 : new 사용
  */
-// console.log('-'.repeat(20));
-// console.log("[배열생성]");
+console.log('-'.repeat(20));
+console.log("[배열생성]");
 
 // 배열생성 방법
 // 방법1
-// TODO
+let points = [40, 100, 1, 5, 25, 10];
+let fruits = ["Banana", "Orange", "Apple", "Mango"];
 
 // 방법2 : new 사용
-// TODO
+let cars = new Array("Saab", "Volvo", "BMW");   // 비추
+
+ console.log(points);
+ console.log(points.toString());
+ console.log(`points = ${points}`);
+ console.log(`points =`, points);
+
+arr1 = [10, 20, 30];
+arr2 = [10, 20, 30];
+
+console.log(arr1 == arr2); //???????
 
 // 일반적으로 배열변수는 const 로 선언한다
-// TODO
+const animals = [
+    'tiger',
+    'dog',
+    'cat',    // 마지막 콤마 OK
+];
+
+console.log(animals);
+animals[2] = 'bird';   // 배열은 mutable 하다
+console.log(animals);
+// animals = [10, 20, 30] // 에러!
 
 /********************************************
  * 배열 여부 판단 하기
@@ -51,11 +71,20 @@
  * 방법2: constructor 사용 구 브라우저에서 동작시키려면 별도희 함수 만들어 사용
  * 방법3: instanceof 연산자 사용
  */
-// console.log('-'.repeat(20));
-// console.log("[배열여부 판단]");
+console.log('-'.repeat(20));
+console.log("[배열여부 판단]");
 
 // 방법1
-// TODO
+console.log(Array.isArray(fruits));
+
+const names = {
+    0: '이용학',
+    1: '김건우',
+    2: '김혁주',
+};
+console.log(names[0], names[1], names[2]);
+console.log(Array.isArray(names)); // false
+
 
 // 방법2
 // TODO
@@ -84,12 +113,21 @@
  * 
  *  shift, unshift 는 pop, push 보다 성능이 느리다!
  */
-// console.log('-'.repeat())
-// console.log("[push() pop() shift() unshift()]");
-// console.log(fruits);
+console.log('-'.repeat())
+console.log("[push() pop() shift() unshift()]");
+console.log(fruits);
 
-// TODO
+fruits.push("Grape");
+console.log('push() 후', fruits);
 
+console.log('pop() 결과', fruits.pop());
+console.log('pop() 이후', fruits);
+
+console.log('shift() 결과', fruits.shift());
+console.log('shift() 이후', fruits);
+
+console.log('unshift() 결과', fruits.unshift("Grape"));
+console.log('unshift() 이후', fruits);
 
 /**************************************
  * 데이터 삭제, 삽입 splicing
@@ -98,11 +136,16 @@
  *  세번째 이후 .. : 삽입될 데이터 들..
  *  리턴값: 삭제된 원소들의 배열. 원본변화됨
  */
-// console.log('-'.repeat(20));
-// console.log("데이터 삭제/삽입 splice()");
-// console.log(fruits);
+console.log('-'.repeat(20));
+console.log("데이터 삭제/삽입 splice()");
+console.log(fruits);
 
-// TODO
+fruits.splice(2, 0, "Kiwi", "Banana");
+console.log(fruits);
+
+result = fruits.splice(2, 2, "Peach");
+console.log(result);
+console.log(fruits);
 
 // 주의! delete 를 사용하여 배열 원소 삭제 하지 말기
 // 이는 배열에 구멍(undefined hole) 을 만들게 된다.

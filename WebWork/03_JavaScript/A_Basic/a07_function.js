@@ -103,16 +103,43 @@ sayName('유원준', '서울 강남구'); //???
  *  -- 함수 종료
  *  -- 호출한 쪽으로 '값 하나' 을 돌려준다 
  */
-// console.log('-'.repeat(20));
-// console.log('[return]');
+console.log('-'.repeat(20));
+console.log('[return]');
 
-// TODO
+function codeEveryday1(){
+    console.log('자바스크립트 열공중');
+    console.log('JavaScript is fun!');
+    console.log('You need JavaScript');
+    return;
+}
 
+codeEveryday1();
 
-// ----------------------------------------------------
-// JS 에선 함수도 '데이터'다
+function codeEveryday2(){
+    console.log('자바스크립트 열공중');
+    console.log('JavaScript is fun!');
+    return;
+    console.log('You need JavaScript');
+}
+codeEveryday2();
 
-// TODO
+// 주의! 동일이름의 함수 정의하면 이전 함수정의는 사라짐
+// 문제는 이전에 호출한 코드도 나중에 정의한 함수로 적용됨. (hoisting) 발생
+
+// 일반적으로 JS 에선 함수를 아래와 같이 정의하는 것을 선호한다
+// 상수 = function() 객체(이름없는 함수객체)
+
+const sayHello2 = function(name, age){
+    sayName(name);
+    console.log(`나이는 ${age} 입니다`);
+};
+
+sayHello2('김인진', 31);
+console.log(sayHello2);
+console.log(typeof sayHello2);
+
+const sayHello3 = sayHello2;
+sayHello3("박윤수", 24);
 
 // ----------------------------------------------------
 // 리턴값 갖는 함수 정의
@@ -120,7 +147,28 @@ sayName('유원준', '서울 강남구'); //???
 //  수행: 덧셈을 수행한뒤
 //  리턴: 덧셈 결과를 리턴
 
-// TODO
+const add = function(a, b){
+    let result = a + b;
+    return result;
+};
+
+let out = add(10, 20);
+console.log(`out = ${out}`);
+
+out = add(10);
+console.log(`out = ${out}`);
+
+// return 값이 없거나, return 이 명시 안된 경우는 undefined 를 리턴한다
+console.log(codeEveryday2());
+
+// 이름없는 함수객체 생성과 동시에 호출
+(function(){
+    console.log('hello function');
+})();
+
+(function(a, b){
+    console.log(`${a} + ${b} = ${a + b}`);
+})(10, 13);
 
 console.log("\n[프로그램 종료]", '\n'.repeat(20));
 

@@ -15,13 +15,25 @@ let str, str1, str2, str3;
 // console.log("[문자열 생성]");
 // TODO
 
+// .length
+console.log("length: 문자개수");
+str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+console.log(str.length);
+
+
+
 /******************************************
  * 문자열 인덱싱
  */
-//  console.log('-'.repeat(20));
-//  console.log('[문자열인덱싱]');
-//  str = "Hello World";
-// TODO
+ console.log('-'.repeat(20));
+ console.log('[문자열인덱싱]');
+ str = "Hello World";
+console.log(str[0]);
+console.log(str[100]);  // undefined
+
+// 문자열은 immutable 하다!!!!!!!!
+str[0] = 'Y';  // 에러는 아니다.
+console.log(str);
 
 /******************************************
  * String 의 메소드들
@@ -44,12 +56,26 @@ let str, str1, str2, str3;
  *  startsWith(searchValue, start) : 주어진 문자열로 시작하면 true 리턴
  *  endsWith(searchValue, length): 주어진 문자열로 끝나면 true 리턴
  */
-// console.log('-'.repeat(20));
-// console.log("[문자열 검색 indexOf(), lastIndexOf(), search(), includes()]");
-// str = "Please locate where 'locate' occurs!";
+console.log('-'.repeat(20));
+console.log("[문자열 검색 indexOf(), lastIndexOf(), search(), includes()]");
+str = "Please locate where 'locate' occurs!";
 
-// TODO
+console.log(str.indexOf("locate"));
+console.log(str.lastIndexOf("locate"));
+console.log(str.indexOf("John"));  // -1
+console.log(str.indexOf("locate", 15));  // 15번째부터 검색
 
+console.log(str.search("locate"));  // 7
+// search() vs indexOf() : 둘은 다르다!
+// 	search() : 두번째 매개변수 없다, regexp 사용가능
+// 	indexOf() : regexp 사용 불가
+
+console.log(str);
+console.log(str.includes("locate"))
+console.log(str.includes("abc"))
+
+console.log(str.startsWith("Please"));
+console.log(str.startsWith("please"));
 
 /***********************************************
  *  문자열 추출
@@ -57,11 +83,18 @@ let str, str1, str2, str3;
  *  substring(start, end)
  *  substr(start, length) : start 부터 length 개의 문자 추출
  */
-// console.log('-'.repeat(20));
-// console.log("[문자열 추출 slice(), substring(), substr()]");
-// str = "Apple, Banana, Kiwi";
+console.log('-'.repeat(20));
+console.log("[문자열 추출 slice(), substring(), substr()]");
+str = "Apple, Banana, Kiwi";
 
-// TODO
+console.log(str);
+console.log(str.slice(7, 13));   // Banana
+console.log(str.slice(-12, -6));  // 음수 인덱싱 가능
+
+console.log(str.slice(7));  // 7부터 끝까지
+
+console.log(str.substring(7, 13));  // slice() 와 유사하나 음수인덱싱 지원안함.
+console.log(str.substring(7));
 
 
 /*******************************
@@ -69,12 +102,18 @@ let str, str1, str2, str3;
  *  replace() : 치환한 결과 문자열 리턴, 정규표현식 사용 가능
  *  기본적으로 첫번째 '매칭된 문자열 만 치환
  */
-// console.log('-'.repeat(20));
-// console.log("[문자열 치환 replace()]");
-// str = "Please visit Japan!";
+console.log('-'.repeat(20));
+console.log("[문자열 치환 replace()]");
+str = "Please visit Japan!";
 
-// TODO
+console.log(str.replace("Japan", "Korean"));
+console.log(str.replace("JAPAN", "Korean"));
+console.log(str.replace(/JAPAN/i, "Korean"));  // 정규표현식 사용
+                    // i: case insensitive
 
+str = "Please visit Japan! Go Japan";
+console.log(str.replace("Japan", "Korea")); // 기본적으로 첫번째 매칭만 치환              
+console.log(str.replace(/Japan/g, "Korea"));  // 정규표현식 g: global match
 
 /*********************************
  * 대소문자 전환
@@ -82,43 +121,77 @@ let str, str1, str2, str3;
  */
 // console.log('-'.repeat(20));
 // console.log("[대소문자 전환 toUpperCase(), toLowerCase()]");
-// str = "Hello World!";
+str = "Hello World!";
  
-// TODO
+console.log(str.toUpperCase());
+console.log(str.toLowerCase());
 
 /*********************************
  * 문자열 연결 
  *  concat()
  */
-// console.log('-'.repeat(20));
-// console.log("문자열 연결 concat()");
-// str1 = "Hello";
-// str2 = "World";
+console.log('-'.repeat(20));
+console.log("문자열 연결 concat()");
+str1 = "Hello";
+str2 = "World";
  
-// TODO
+// 다음의 결과는 모두 같다
+console.log(str1 + ' ' + str2);
+console.log(`${str1} ${str2}`);
+console.log(str1.concat(" ", str2));
 
 
 /**********************************
  * 좌우 공백 제거 
  *  trim()
  */
-// console.log('-'.repeat(20));
-// console.log("좌우 공백 제거 trim()");
-// str = "       Hello World!        ";
+console.log('-'.repeat(20));
+console.log("좌우 공백 제거 trim()");
+str = "       Hello World!        ";
 
-// TODO
+console.log(`[${str}]`);
+console.log(`[${str.trim()}]`);
 
 /************************************
  * 문자열 앞/뒤로 패딩문자 추가
  *  padStart(), padEnd()
  *  ECMA2017 에서 추가 https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/String/padStart
  */
-// console.log('-'.repeat(20));
-// console.log('[문자열 앞/뒤로 패딩문자 추가]');
-// str = "5";
+console.log('-'.repeat(20));
+console.log('[문자열 앞/뒤로 패딩문자 추가]');
+str = "5";
 
-// TODO
+console.log(`[${str}]`);
+console.log(`[${str.padStart(4)}]`);
+console.log(`[${str.padStart(4, "x")}]`);
+console.log(`[${str.padEnd(4)}]`);
+console.log(`[${str.padEnd(4, "x")}]`);
 
+// [도전!]
+// number 를 5자리 + 우측정렬로 표시하기
+// (우선 number 를 string 으로 변환한뒤 해야 한다)
+let num1 = 11, num2 = 2345, num3 = 761;
+// -----
+//    11
+//  2345
+//   761
+
+console.log('-'.repeat(5))
+console.log(num1.toString().padStart(5));
+console.log(num2.toString().padStart(5));
+console.log(num3.toString().padStart(5));
+
+// 실수 number 를 소숫점2자리 + 총7자리 + 우측정렬 표시하기
+num1 = 3.141592, num2 = 1234.2, num3 = 65.548
+// -------
+//    3.14
+// 1234.20
+//   65.55
+
+console.log('-'.repeat(7))
+console.log(num1.toFixed(2).padStart(7));
+console.log(num2.toFixed(2).padStart(7));
+console.log(num3.toFixed(2).padStart(7));
 
 
 /***********************
@@ -127,32 +200,57 @@ let str, str1, str2, str3;
  *  charCodeAt(position)
  *  Property access [ ] 
  */
-// console.log('-'.repeat(20));
-// console.log("[문자 코드 [ ], charAt(), charCodeAt()]");
-// str = "HELLO WORLD";
+console.log('-'.repeat(20));
+console.log("[문자 코드 [ ], charAt(), charCodeAt()]");
+str = "HELLO WORLD";
 
-// TODO
+console.log(str.charAt(0));
+console.log(str.charAt(100));
+
+console.log(str.charCodeAt(0));
+
 
 /************************
  * 문자열 대소 비교
  */
 
-// TODO
+console.log("Hello" < "Hello");
+console.log("AAaa" > "aaAA");
 
 /*********************************
  * string ↔ array
  *   string -> array : split()  str의 메소드,  정규표현식(regexp) 사용 가능
  *   array -> string : join()   array 의 메소드
  */
-//  console.log('-'.repeat(20));
-//  console.log("[string ↔ array]");
-// str = "2022-11-23"; 
-// TODO
+ console.log('-'.repeat(20));
+ console.log("[string ↔ array]");
+str = "2022-11-23"; 
+
+let arr = str.split("-");
+console.log(arr);
+
+str = "Hello";
+console.log(str.split(""));  // 한글자씩 쪼개짐
+
+str = "Hello My World";
+console.log(str.split(" "));
+
+str = "    Hello My   World   ";
+console.log(str.split(" "));
+console.log(str.trim().split(/\s+/));
+
+arr = ["2022", "07", "28"];
+console.log(arr.join("-"));
 
 
 // 응용: 문자열 뒤집기.  
+// 배열.reverse() 활용
 
-// TODO
+str = "자바스크립트";
+console.log(str);
+console.log(str.split(""));
+console.log(str.split("").reverse());
+console.log(str.split("").reverse().join(''));
 
 console.log("\n[프로그램 종료]", '\n'.repeat(20));
 
