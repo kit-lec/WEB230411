@@ -18,7 +18,31 @@ function print(data){
         console.log(data, '-- Falsy 판정');
 }
 
-// TODO
+print(true);
+print(false);
+print(10 > 20);
+
+// Falsy 
+print(0);
+print(0.0);
+print('');
+print(null);
+print(undefined);
+print(NaN);
+
+console.log(!0);   // true
+console.log(!"이진수");
+
+// truthy
+print(true);
+print(37);
+print(-37);
+print('Mark');
+print(' ');
+print({a: 10, b: 20});
+print([10, 20, 30]);
+print({});
+print([]);
 
 console.log("\n[프로그램 종료]", '\n'.repeat(20));
 

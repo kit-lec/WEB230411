@@ -33,7 +33,7 @@ const inputs = [
     "p9-324-389-zopl",    // 유효한 쿠폰이 아닙니다
 ];
 
-const regex = "";  // TODO: 정규표현식을 작성해보세요
+const regex = /^[a-zA-Z]{2}-[1-9][0-9]{3}-[1-9][0-9]{2}-[a-zA-Z]{3}$/;  // TODO: 정규표현식을 작성해보세요
 
 inputs.forEach((e) => {
     if(regex.test(e)){

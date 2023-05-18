@@ -17,16 +17,29 @@ let arr1, arr2;
  * 성능에 유리하다.
  */
 
-// TODO
+let i;
+for(i = 0; i < cars.length; i++){
+    console.log(cars[i]);
+}
+
+let len = cars.length;
+for(i = 0; i < len; i++){
+    console.log(cars[i]);
+}
+
+
 
 /*************************************
  * for ( .. in .. ) 
  *   'property(key/인덱스)' 를 반복한다.  
  *    주로 '객체(object)' 에 대해 사용
  */
-// console.log("-".repeat(20));
-// console.log('[for(  in  )');
-// TODO
+console.log("-".repeat(20));
+console.log('[for(  in  )');
+
+for(x in cars){
+    console.log(x, cars[x]);
+}
 
 
 /************************************
@@ -36,9 +49,12 @@ let arr1, arr2;
  *   iterable 한 객체에 사용가능  (아래 추가 설명)
  *   https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/for...of
  */
-// console.log("-".repeat(20));
-// console.log('[for(  of  )]');
-// TODO
+console.log("-".repeat(20));
+console.log('[for(  of  )]');
+
+for(e of fruits){
+    console.log(e);
+}
 
 /***********************************
  * 배열.forEach(함수)
@@ -48,12 +64,45 @@ let arr1, arr2;
  * 
  * https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach
  */
-// console.log("-".repeat(20));
-// console.log('[배열.forEach(함수)]');
+console.log("-".repeat(20));
+console.log('[배열.forEach(함수)]');
 
+function myFunction(value){
+    console.log(value);
+}
+fruits.forEach(myFunction);
 
-// TODO
+console.log('-'.repeat(20));
 
+fruits.forEach(function(value){  // 이름없는 함수
+    console.log(value);
+});
+
+console.log('-'.repeat(20));
+
+fruits.forEach(e => console.log(e));  // 화살표 함수
+
+fruits.forEach((value, index) => console.log(value, index));
+
+// 주어진 배열의 값을 x 2 한 배열 구하기
+console.log('points =', points);
+arr1 = [];
+points.forEach(e => arr1.push(e * 2));
+console.log('x2 =', arr1);
+
+// 도전: 주어진 배열중 짝수만 담긴 배열 구하기
+console.log('points =', points);
+
+arr1 = [];
+for(e of points){
+    if(e % 2 == 0) arr1.push(e);
+}
+console.log(arr1);
+
+// forEach + 화살표 + SCE
+arr1 = [];
+points.forEach(e => e % 2 || arr1.push(e));
+console.log(arr1);
 
 /********************************
  * for~in 과 object
@@ -63,17 +112,52 @@ let arr1, arr2;
  * 	
  * 	for~of 는 iterable 한 객체에 대해서만 사용 가능.
  */
-// console.log("-".repeat(20));
-// console.log('[object 와 for~in]');
+console.log("-".repeat(20));
+console.log('[object 와 for~in]');
  
-// const person = {
-// 	firstname : "John",
-// 	lastname : "Doe",
-// 	age : 50,
-// 	eyecolor : "blue"
-// };
+const person = {
+	firstname : "John",
+	lastname : "Doe",
+	age : 50,
+	eyecolor : "blue"
+};
 
-// TODO
+for(prop in person){
+    console.log(prop, person[prop]);
+}
+
+// for .. in 의 단점
+for(const i in {a: 1, b: 2, c: 3}){
+	console.log(`i =`, i);  // 일단 결과는 잘 나온다  a, b, c
+}
+
+// 마치 {a: 1, b: 2, c: 3} 안에 있는 a,b,c 만 나오는 듯하지만
+
+// prototype 에 있는 것도 나올수 있기 때문에
+// 의도치 않은 결과를 내뱉을수도 있다.
+// (런타임 환경에 따라서 for..in.. 은 다르게 동작할수 있다)
+
+Object.prototype.test = function(){};
+console.log();
+for(const i in {a: 1, b: 2, c: 3}){
+	console.log(`i =`, i);  // 헉? a, b, c, test 까지?!?
+}
+
+// 따라서! object 를 순환(iteration) 할 경우
+// ↓아래 3가지를 활용하도록 하자
+
+
+// 위 object 의 key 들만 뽑아내려면?
+console.log(Object.keys(person));
+
+// 위 object 의 value 들만 뽑아내려면?
+console.log(Object.values(person));
+
+
+// [key, value] 를 있는 배열 형태
+console.log(Object.entries(person));
+
+
 
 /****************************************
  * string 
@@ -81,11 +165,25 @@ let arr1, arr2;
  * 
  * 	 string 은 iterable 하기 때문에 for~of 사용 가능
  */
-// console.log("-".repeat(20));
-// console.log('[string 과 for]');
-// const str = "Hello";
+console.log("-".repeat(20));
+console.log('[string 과 for]');
+const str = "Hello";
 
-// TODO
+for(i = 0; i < str.length; i++){
+    console.log(i, str[i]);
+}
+
+for(i in str){
+    console.log(i, str[i]);
+}
+
+for(ch of str){
+    console.log(ch);
+}
+
+//str.forEach(ch => console.log(ch));  // forEach 는 배열의 메소드다!
+
+str.split("").forEach(ch => console.log(ch));
 
 /***********************************************
  * iterable

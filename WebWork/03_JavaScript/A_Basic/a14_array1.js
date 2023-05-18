@@ -159,20 +159,24 @@ console.log(fruits);
  *  concat() 
  *    주어진 배열의 원소들을 추가, 원본변화 안함
  */
-// console.log('-'.repeat(20));
-// console.log("concat()");
+console.log('-'.repeat(20));
+console.log("concat()");
 
-// TODO
+console.log(fruits);
+console.log(fruits.concat(["Grape", "Lemon"]));
+console.log(fruits);   // concat 은 원본 변화시키기 않습니다.
 
 
 /*************************
  *  slice()
  * 배열의 일부분 추출, 원본에는 영향 안줌
  */
-// console.log('-'.repeat(20));
-// console.log("slice()");
+console.log('-'.repeat(20));
+console.log("slice()");
 
-// TODO
+console.log(fruits.slice(1));  // 1번째 부터 추출
+console.log(fruits.slice(1, 3));  // 1번째 부터 3번째 전까지
+
 
 
 /****************************
@@ -181,11 +185,15 @@ console.log(fruits);
  *  indexOf() : 찾으면 index 리턴, 못찾으면 -1 리턴
  *  includes() : 찾으면 true, 아니면 false 리턴, ES7(ES2016) 에 등장
  */
-//  console.log('-'.repeat(20));
-//  console.log("indexOf(), includes()");
-//  console.log(fruits);
+ console.log('-'.repeat(20));
+ console.log("indexOf(), includes()");
+ console.log(fruits);
 
-// TODO
+console.log(fruits.indexOf("Apple"));
+console.log(fruits.indexOf("Banana"));
+
+console.log(fruits.includes("Apple"));
+console.log(fruits.includes("Banana"));
 
 
 
@@ -207,20 +215,36 @@ console.log(fruits);
  *  JS 의 array : numbered index 사용
  *  JS 의 object : named index 사용
  */
-// arr1 = [];   // 비어있는 배열
+arr1 = [];   // 비어있는 배열
 
-// TODO
+console.log(arr1.length);
+
+arr1[0] = 100;
+arr1[1] = 200;
+console.log(arr1);
+console.log(arr1.length);
+
+arr1[4] = 300; // 구멍(hole) 발생
+console.log(arr1);
+console.log(arr1.length);   // 5
+
+arr1['name'] = 'John';  // 헉? named index???
+console.log(arr1);
+console.log(arr1.length);   
+
+console.log(Array.isArray(arr1));
 
 
 /********************************
  * 배열 역순 reverse()
  *  원본 변화 발생.
  */
-// console.log('-'.repeat(20));
-// console.log("reverse()");
-// console.log(cars);
+console.log('-'.repeat(20));
+console.log("reverse()");
+console.log(cars);
  
-// TODO
+console.log(cars.reverse());  // 원본변화 발생
+console.log(cars);
 
 /**********************************
  * 배열 정렬 sort()
@@ -230,11 +254,17 @@ console.log(fruits);
  * 
  * https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
  */
-//  console.log('-'.repeat(20));
-//  console.log("sort()");
-//  console.log(fruits);
+ console.log('-'.repeat(20));
+ console.log("sort()");
+ console.log(fruits);
 
-// TODO
+fruits.sort();
+console.log(fruits);
+
+// 역정렬하려면?
+console.log(cars);
+console.log(cars.sort());
+console.log(cars.sort().reverse());
  
 console.log("\n[프로그램 종료]", '\n'.repeat(20));
 

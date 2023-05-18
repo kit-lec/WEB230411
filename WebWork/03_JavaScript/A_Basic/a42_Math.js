@@ -9,11 +9,18 @@ let arr, result;
  * 상수들
  * Math 의 property 로 제공
  */
-//  console.log('Math 의 상수 property 들');
-//  arr = [
-
-//  ]
-//  arr.forEach(n => console.log(n));
+ console.log('Math 의 상수 property 들');
+ arr = [
+    Math.E,   // Euler's number
+    Math.PI,  // 원주율
+    Math.SQRT2,  // root 2
+    Math.SQRT1_2,  // root 1/2
+    Math.LN2,   // natural logarithm of 2
+    Math.LN10,  // natural logarithm of 10
+    Math.LOG2E, // base 2 logarithm of E
+    Math.LOG10E, // base 10 logarithm of E
+ ]
+ arr.forEach(n => console.log(n));
 
 
 /************************
@@ -23,14 +30,23 @@ let arr, result;
  * Math.ceil(x)	    x 보다 큰 수 중에 가장 작은 정수
  * Math.trunc(x)	x 의 소숫점 이하 잘라낸 정수
  */
-// console.log('-'.repeat(20));
-// console.log('round() floor() ceil() trunc()');
+console.log('-'.repeat(20));
+console.log('round() floor() ceil() trunc()');
 
-// arr = [1.2, 1.7, -1.2, -1.7];
-// console.log('arr: ', arr);
+arr = [1.2, 1.7, -1.2, -1.7];
+console.log('arr: ', arr);
  
 
-// TODO
+// [1, 2, -1, -2]
+// result = [];
+// arr.forEach(n => result.push(Math.round(n)));
+result = arr.map(n => Math.round(n));
+console.log('round():', result);
+    
+console.log('floor():', arr.map(n => Math.floor(n)));
+console.log('ceil():', arr.map(n => Math.ceil(n)));
+console.log('trunc():', arr.map(n => Math.trunc(n)));
+
 
 /**********************************
  * pow(), sqrt(), abs()

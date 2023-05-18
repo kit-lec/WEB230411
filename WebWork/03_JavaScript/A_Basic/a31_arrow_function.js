@@ -14,8 +14,33 @@
       그래서, arrow function 은 생성자 함수로 사용 할수 없습니다.
 */
 
-// TODO
+let add, sum;
 
+add = function(a, b){
+    return a + b;
+}
+console.log(add(10, 20));
+
+// 이를 화살표 함수로 정의하면
+add = (a, b) => a + b;
+console.log(`sum = ${add(1, 2)}`);
+
+console.log(add);
+console.log(typeof add);
+console.log(add.toString());
+
+const hello1 = name => {
+    console.log(`hello1: ${name}!`);
+};
+hello1('아이언맨');
+
+const hello2 = (name, age) => {
+    console.log(`hello2:`, name, age);
+};
+hello2('Susan', 23);
+
+const hello3 = () => {console.log('hello3');};
+hello3();
 
 console.log("\n[프로그램 종료]", '\n'.repeat(20));
 

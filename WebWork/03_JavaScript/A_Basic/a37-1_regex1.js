@@ -62,20 +62,30 @@ text = "Hello JavaScript";
  *            매칭이 없으면 null 리턴
  *   test() : 패턴매칭 결과 리턴 true / false
  */
-// console.log('-'.repeat(20));
-// console.log('[정규표현식 메소드 예]');
-// text = 'The best things in life are free!';
+console.log('-'.repeat(20));
+console.log('[정규표현식 메소드 예]');
+text = 'The best things in life are free!';
 
-// TODO
+pattern = /e/;
+console.log(pattern.test(text));  // true
+console.log(/x/.test(text));  // false
+
+console.log(pattern.exec(text));
 
 /************************************
  * 그룹이 지정된 경우
  */
-// console.log('-'.repeat(20));
-// console.log('[그룹]')
-// text = "-My98KK-myABCD--My1234567--MyZZ---My789";
+console.log('-'.repeat(20));
+console.log('[그룹]')
+text = "-My98KK-myABCD--My1234567--MyZZ---My789";
 
-// TODO
+pattern = /My..../;
+console.log(result = pattern.exec(text));
+console.log(result.length);
+
+pattern = /(My)(....)/;
+console.log(result = pattern.exec(text));
+console.log(result.length);  // 3
 
 /***************************
  * match(), matchAll() 
@@ -86,11 +96,17 @@ text = "Hello JavaScript";
  *   matchAll() 은 전체 매칭결과(들)에 대한 iterator 리턴
  *       - RegExp 는 반드시 g 옵션이 있어야 한다.
  */
-// console.log('-'.repeat(20));
-// console.log('[string 의 match(), matchAll()]')
-// const str = '-My98KK-myABCD--My1234567--MyZZ---My789';
+console.log('-'.repeat(20));
+console.log('[string 의 match(), matchAll()]')
+const str = '-My98KK-myABCD--My1234567--MyZZ---My789';
 
-// TODO
+const regexp = /(My)(....)/g;
+
+console.log(regexp);
+
+result = str.match(regexp);
+console.log(result);
+console.log(result.length);  // 매칭된 개수
 
 //-----------------------------------
 // 도우미 함수
