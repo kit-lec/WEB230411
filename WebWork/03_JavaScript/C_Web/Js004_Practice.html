@@ -21,6 +21,15 @@ table{
 </head>
 <body>
 <script>
+	var n = Math.floor(Math.random() * 10) + 1;
+	document.write(`n:${n}<br>`);
+	document.write("<ol>");
+	for(let i = 0; i < n; i++){
+		document.write(`<li>안녕하세요 ${i + 1} 번째입니다 </li>`);
+	}
+	document.write("</ol>");
+</script>	
+<script>
 
 // TODO
 

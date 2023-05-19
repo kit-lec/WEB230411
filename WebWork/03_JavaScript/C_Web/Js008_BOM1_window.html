@@ -45,7 +45,28 @@ window
 
 <script>
 
-// TODO
+// 전역변수 x
+var x = 10;
+
+function myFunc1(){
+	window.document.getElementById('result1').innerHTML =
+		`전역 x = ${window.x}, a = ${a}`;
+}
+
+function myFunc2(){
+	x += 3;
+	document.getElementById('result2').innerHTML = x;
+}
+
+function myFunc3(){
+	a = 40; // 함수 안에서 선언했다고 다 지역변수가 아니다. var, let, const 를 사용하지 않으면 자동으로 전역 변수다.
+	document.getElementById("result3").innerHTML = a;
+}
+
+function myFunc4(){
+	a = a + 20;
+	document.getElementById("result4").innerHTML = a; // <- 이 a 는?
+}
 
 </script>
 
