@@ -54,18 +54,28 @@ p { background-color: cyan;}
 var para;
 var node;
 var parent, child;
-var element = document.getElementById("div1");
+var parent = document.getElementById("div1");
 
 // 단계별로 확인해보자
 
 // appendChild()
-// TODO
+para = document.createElement("p"); // <p> element node 생성
+node = document.createTextNode("appendChild() 로 추가");  // #text node 생성	
+para.appendChild(node);
+
+parent.appendChild(para);  // DOM 에 붙어야만 브라우저에서 화면에 그려준다.
+
 
 // insertBefore()
-// TODO
+para = document.createElement("p");
+node = document.createTextNode("insertBefore() 로 추가");
+para.appendChild(node);
 
-// removeChild()
-// TODO
+child = document.getElementById('p1');
+parent.insertBefore(para, child);
+
+// remove()
+document.getElementById('p1').remove();
 
 </script>
 

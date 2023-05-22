@@ -50,7 +50,8 @@ HTML element를 다루기 위한
 
 <script>
 //TODO : id 값이 중복되는 경우 첫번째 element 만 가져온다.
-
+document.write("결과: " + document.getElementById('demo1').innerHTML)
+document.getElementById('demo3').innerHTML = '바꾸지용';
 </script>
 
 <hr>
@@ -63,7 +64,11 @@ HTML element를 다루기 위한
 
 <script>
 // div element들을 찾아서 차례대로 "div1 입니다" "div2 입니다"..  로 내용 바꾸기
-// TODO
+var elements = document.getElementsByTagName("div");
+
+for(i = 0; i < elements.length; i++){
+	elements[i].innerHTML = `div${i + 1} 입니다.`;
+}
 
 </script>
 
@@ -81,7 +86,11 @@ HTML element를 다루기 위한
 // getElementsByClassName("c3")
 // element.style.background
 
-// TODO
+elements = document.getElementsByClassName("c3");
+
+for(e of elements){
+	e.style.background = "yellow";
+}
 
 </script>
 
@@ -99,7 +108,12 @@ name2: <input type="text" value="name2" name="name2"/><br>
 // 배경색을 노란색으로 하고 입력사이즈를 50으로 변경해보기
 // background (CSS),  size(attribute)
 
-// TODO
+document.getElementsByName("name1").forEach(e => {
+	e.style.background = "yellow";
+	e.size = 50;	
+});
+
+
 
 </script>
 
@@ -113,7 +127,11 @@ name2: <input type="text" value="name2" name="name2"/><br>
 <script>
 // p.intro selector 에 해당하는 element 들을 찾아서 배경색 하늘색으로
 
-// TODO
+elements = document.querySelectorAll("p.intro");
+
+elements.forEach(e => {
+	e.style.background = "cyan";
+});
 
 </script>
 
@@ -161,7 +179,20 @@ collection 결과에 .length, for, for-of 는 사용 가능하나 forEach 는 �
 //name=frm1 인 <form> 안의
 //form element 들의 value 들을 읽어오기
 
-// TODO
+var frm1 = document.forms['frm1'];
+
+//alert(frm1.length);
+//  (form).length 는 그 (form) 안의 form element들 개수
+//  (form).elements[i] . 그 안의 각 element들
+
+var result = [];
+for(i = 0; i < frm1.length; i++){
+	result.push(frm1.elements[i].value);
+}
+document.getElementById("frm_result1").innerHTML = result.join(',');
+
+document.getElementById('frm_result2').innerHTML = 
+	document.forms['frm2']['input2_2'].value;
 
 </script>
 
@@ -175,7 +206,9 @@ collection 결과에 .length, for, for-of 는 사용 가능하나 forEach 는 �
 
 <script>
 //모든 이미지들의 테두리를 4px solid blue 로 만들기
-// TODO
+for(e of document.images){
+	e.style.border = "4px solid blue";
+}
 
 </script>
 

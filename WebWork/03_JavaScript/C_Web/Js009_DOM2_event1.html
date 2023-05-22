@@ -49,7 +49,42 @@ var demoBox = document.getElementById("demo");
 var addButton = document.getElementById("add_event"); 
 var removeButton = document.getElementById("remove_event");
 
-// TODO
+function clickHandler(event){
+
+	document.getElementById('event').innerHTML = event.type + " " + event.target;
+
+	var bgcolor = demoBox.style.background;
+
+	if(bgcolor != 'greenyellow')
+		demoBox.style.background = "greenyellow";
+	else
+		demoBox.style.background = "yellow";
+}
+
+function mouseOverHandler(event){
+	document.getElementById('event').innerHTML = event.type + " " + event.target;
+
+	demoBox.style.outline = "3px solid red";
+}
+
+addButton.addEventListener("click", function(){
+	demoBox.addEventListener("click", clickHandler);
+	demoBox.innerHTML = "클릭해보세요";
+
+	demoBox.onmouseover = mouseOverHandler;
+	demoBox.onmouseout = function(event){
+		document.getElementById('event').innerHTML = event.type + " " + event.target;
+		demoBox.style.outline = "";
+	};
+});
+
+removeButton.addEventListener("click", function(){
+	demoBox.removeEventListener("click", clickHandler);
+	demoBox.innerHTML = "이벤트없어요";
+
+	demoBox.onmouseover = undefined;
+	demoBox.onmouseout = undefined;
+});
 
 </script>
 
@@ -58,7 +93,23 @@ var removeButton = document.getElementById("remove_event");
 
 <script>
 
-// TODO
+	var showSize = function(event){
+		document.getElementById('event').innerHTML = event.type + " " + event.target;
+		document.getElementById("windowSize").innerHTML = 
+			window.innerWidth + " x " + 
+			window.innerHeight;
+	};
+
+window.addEventListener("resize", showSize);
+
+window.onload = function(event){
+	showSize(event);
+}
+
+// ※  문서 로딩 후에 JS 코드를 통해 이벤트들을 걸어주는 경우가 있다. 
+// 이때는 window 의 onload 나 document 의 onload 혹은 body 의 onload 에 작성하자
+// --> HTML 과 JS 과 완전히 분업 가능해진다!
+
 
 </script>
 

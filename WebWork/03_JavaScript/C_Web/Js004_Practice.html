@@ -31,7 +31,20 @@ table{
 </script>	
 <script>
 
-// TODO
+	let row = Math.floor(Math.random() * 10) + 1;
+	let col = Math.floor(Math.random() * 10) + 1;
+	
+	document.write("row:" + row + " col:" + col);
+	
+	document.write("<table>");
+	for(i = 1; i <= row; i++){
+		document.write("<tr>");
+		for(j = 1; j <= col; j++){
+			document.write(`<td>${i}행${j}열</td>`);
+		}
+		document.write("</tr>");
+	} // end for
+	document.write("</table>");
 
 </script>
 

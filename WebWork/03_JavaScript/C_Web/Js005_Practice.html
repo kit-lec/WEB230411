@@ -20,7 +20,23 @@ table{
 
 <script>
 
-// TODO
+	let result = [];
+	result.push("<table>");
+	result.push("<tr><th>No</th><th>타이틀</th><th>월세</th><th>보증금</th></tr>");
+	
+	let i = 0;
+	x.items.forEach(e => {
+		i++;
+		result.push("<tr>");
+		result.push(`<td>${i}</td>`);
+		result.push(`<td>${e.item.title}</td>`);
+		result.push(`<td>${e.item.rent}</td>`);
+		result.push(`<td>${e.item.deposit}</td>`);	
+		result.push("</tr>");
+	});
+	
+	result.push("</table>");
+	document.write(result.join(''));
 
 </script>
 

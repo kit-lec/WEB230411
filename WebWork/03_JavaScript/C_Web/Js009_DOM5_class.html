@@ -63,19 +63,30 @@ let btn04 = document.getElementById("btn04");
 let result = document.getElementById("result");
 
 btn01.onclick = function(){
-    // TODO
+    result.innerHTML = `${h1.classList} : ${typeof h1.classList}`;
 };
 
 btn02.onclick = function(){
-    // TODO
+    for(e of document.querySelectorAll("h1, h2, p")){
+        e.classList.add('blue');
+    }
+
+    document.getElementById('d01').classList.add('blue');
+    document.getElementById('d02').classList.add('important', 'blue');
 };
 
 btn03.onclick = function(){
-    // TODO
+    for(e of document.querySelectorAll("h1, h2, p")){
+        e.classList.remove('blue');
+    }
 };
 
 btn04.onclick = function(){
-    // TODO
+    for(e of document.querySelectorAll("h1, h2, p")){
+        e.classList.toggle('blue');
+    }
+
+    document.getElementById('d01').classList.toggle('blue');
 };
 
 
