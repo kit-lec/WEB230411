@@ -94,7 +94,11 @@ var info = document.getElementById('info');
 var url = "JS/ajax_info.txt";
 function loadDoc() {
 
-	// TODO
+	fetch(url)  // => Promise<Response>
+		//.then((response) => alert(`${response.status} ${response.statusText}`))
+		.then((response) => response.text())  // response.text() => Promise<string>
+		.then((text) => info.innerHTML = text)
+		;
 
 }
 </script>

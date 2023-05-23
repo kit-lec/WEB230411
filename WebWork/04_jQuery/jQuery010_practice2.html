@@ -3,9 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>영수증 확인 폼</title>
-
+    <title>영수증 확인폼 - jQuery DOM연습2</title>
     <style>
         #receipt {
             width: 700px;
@@ -16,7 +14,8 @@
             width: 100%;
         }
 
-        table, #receiptOption,
+        table,
+        #receiptOption,
         th,
         td {
             border: 1px solid #aaaaaa;
@@ -70,6 +69,15 @@
         }
     </style>
 </head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    // Js009_DOM5_practice1.html 과 같은 동작을 jQuery 로 작성해보세요.
+    // 아래의 HTML 은 수정하지 마세요
+    // 아래 HTML 안에 inline JS 코드 없이 동작할수 있도록 아래에 작성해보세요
+
+    // TODO
+
+</script>
 
 <body>
     <div id="receipt">
@@ -117,100 +125,5 @@
         <input type="submit" id="btn" value="제출">
     </div>
 </body>
-
-<script>
-    // 위의 HTML 은 수정하지 마세요
-    // 위의 HTML 안에 inline JS 코드 없이 동작할수 있도록 아래에 작성해보세요
-
-    // radio 클릭시
-    for (e of document.querySelectorAll("#receiptOption input")) {
-        e.addEventListener('click', function () {
-            changeDisplay(this);
-        });
-    }
-
-    function changeDisplay(e) {
-        var radios = document.getElementsByName('option'); // radio 객체 배열로 받기
-        var table = document.getElementsByClassName('inner_table'); // 테이블객체 배열로 받기
-
-        //document.querySelector("[name='option']:checked")
-
-        for (i = 0; i < radios.length; i++) {
-            //if (radios[i].value == e.value) { // 이벤트를 발생시킨 객체의 value와 i번째 radio의 value 값이 같다면
-            if(radios[i].checked){
-                table[i].classList.remove("hidden"); // 테이블 보이기
-            } else { // 아니라면
-                table[i].classList.add("hidden"); // 테이블 숨기기
-            }
-        }
-    }
-
-    
-    // 제출할 때 폼 검증
-    document.getElementById('btn').addEventListener('click', chkSubmit);
-
-    function chkSubmit() {
-        var op = document.getElementsByName('option'); // radio 객체 배열로 받기
-
-        if (op[0].checked) { // 구매자명 + 금액을 check한 상태면
-            const form = document.forms['frm1'];
-            const name = form.name.value.trim();
-            const price = form.price.value.trim();
-
-            // 구매자명 유효성 검사
-            if (name == "") {
-                alert("구매자명을 입력하세요.");
-                form.name.focus();
-
-                return;
-            }
-            // 결제금액 유효성 검사
-            if (price == "" || price < 0) {
-                alert("결제금액을 입력하세요.");
-                form.price.focus();
-
-                return;
-            }
-
-            // 구매자명 + 금액 submit
-            form.submit();
-
-        } else if (op[1].checked) { // 이메일을 check한 상태면
-            const form = document.forms['frm2'];
-            const email = form.email.value.trim();
-
-            const emailPat = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/; // email 패턴에 대한 정규표현식
-            // 이메일 유효성 검사
-            if (!emailPat.test(email)) {
-                alert("이메일을 정확하게 입력하세요.");
-                form.email.focus();
-
-                return;
-            }
-
-            // 이메일 submit
-            form.submit();
-
-        } else if (op[2].checked) { // 카드번호를 check한 상태면
-            const form = document.forms['frm3'];
-
-            // 카드번호 유효성 검사
-            const numPat = /^\d{4}$/;
-
-            for(e of form.cardNum){
-                if(!numPat.test(e.value.trim())){
-                    alert("카드번호를 정확히 입력하세요");
-                    e.focus();
-
-                    return;
-                }
-            }
-
-            // 카드번호 submit
-            form.submit();
-        }
-    }
-
-</script>
 
 </html>
