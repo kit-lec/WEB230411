@@ -3,13 +3,30 @@
 <head>
 <meta charset="UTF-8">
 <title>Hide & Show</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 <script>
 
-// TODO
+// $(document).ready(function(){
+//     $("#hide").click(function(){
+//         $("p").hide();
+//     });
+//     $("#show").click(function(){
+//         $("p").show();
+//     });
+// });
+
 
 // 이벤트 함수에는 여러개의 함수를 등록할수 있다.
-// TODO
+$(document).ready(function(){
+    $("#hide").click(function(){
+        $("p").hide();
+    });
+});
+$(document).ready(function(){
+    $("#show").click(function(){
+        $("p").show();
+    });
+});
  
 </script>
 </head>

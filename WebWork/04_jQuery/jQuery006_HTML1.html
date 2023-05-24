@@ -28,7 +28,7 @@ button {
 </style>
 
 </head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 <script>
 /*
 1. Get
@@ -49,53 +49,60 @@ css(property, value) - css 값 변경
 $(document).ready(function(){
 	// 1. Get
     $("#btn11").click(function(){
-        alert("text(): " /* TODO */);
+        alert("text(): " + $("#test1").text());
     });
     $("#btn12").click(function(){
-        alert("html(): " /* TODO */);
+        alert("html(): " + $("#test1").html());
     });
     $("#btn13").click(function(){
-        alert("val(): " /* TODO */);
+        alert("val(): " + $("#test2").val());
     });
     $("#btn14").click(function(){
-        alert("attr(): " /* TODO */);
+        alert("attr(): " + $("#test3").attr("href"));
     });
     $("#btn15").click(function(){
-        alert("css(): " /* TODO */);
+        // alert("css(): " + $("#test1").css("color"));
 
         // TODO
         
         // 한꺼번에 여러가지 css 값을 읽어 올수도 있다
         
-        // TODO
+        var cssObj = $("#test1").css(["color", "backgroundColor"]);
+        alert(JSON.stringify(cssObj));
     });
 
     // 2. Set
     // 매개변수를 주면 값을 변경할수 있다.
     $("#btn21").click(function(){
-        $("#test1")/* TODO */;
+        $("#test1").text("text1: Hello <b>World!</b>");
     });
     $("#btn22").click(function(){
-        $("#test1")/* TODO */;
+        $("#test1").html("text1: Hello <b>World!</b>");
     });
     $("#btn23").click(function(){
-        $("#test2")/* TODO */;
+        $("#test2").val("Donald Duck");
     });
 
     $("#btn24").click(function(){
-        $("#test3")/* TODO */;
+        //$("#test3").attr("href", "https://www.jQuery.com").text("jQuery");
         
         // 한꺼번에 여러 attribute 변경 가능
         // href 와 title 변경하기
-        // TODO
+        $("#test3").attr({
+            href: "https://www.daum.net",
+            title: "다음",
+        });
     });
     $("#btn25").click(function(){
     	
-    	$("#test1")/* TODO */;
+    	//$("#test1").css("color", "red");
     	
     	// 한꺼번에 여러 CSS 변경 가능
     	// 글자색 --> white ,   배경색 -->  gray
-    	// TODO
+    	$("#test1").css({
+            color: "white",
+            backgroundColor: "gray",
+        });
     });
     
     
@@ -115,12 +122,28 @@ $(document).ready(function(){
     	var $c1 = $(".c1");   // 리턴값은 jQuery Object (wrapped set)
     	
     	// $(selector) 의 결과는 DOM element 가 아니다!
-        // TODO
+        // alert($c1.innerHTML);
 
         // $(selector) 의 결과는 배열처럼 사용 가능.
-        // TODO
+        // alert($c1[0].innerHTML);
+        // alert($c1.length);
 
-        // TODO
+        // let result = [];
+        // for(e of $c1) result.push(e.innerHTML);
+        // alert(result.join(","));
+
+        //alert($c1.text());  // select 된 element 들의 합쳐진 결과
+
+        let result = [];
+        $c1.text(function(i, oldValue){
+            result.push(`${i}: ${oldValue}`);
+        });
+        alert(result.join("\n"));
+        // text(callback)
+        // callback 함수 : select 된 element 마다 callback함수 호출
+        //          index 값과 text() 의 value 값이 전달됨
+
+
 
     });
     $("#btn32").click(function(){

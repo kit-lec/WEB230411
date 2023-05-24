@@ -31,7 +31,7 @@
 	
 	
 	다양한 CDN 존재) https://releases.jquery.com/
-	-구글CDN  https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js
+	-구글CDN  https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js
 	-MS CDN  https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js
 	
 	※ CDN : Content Delivery Network  혹은 Content Distribution Network
@@ -39,12 +39,16 @@
 	CDN 의 이점 : 이미 방문한 사이트를 통해 이미  해단 컨텐츠가 다운로드되어 캐시 된 경우 로딩속도 향상 기대
 	            단점 : 해당 CDN 서버에 문제생기면, 이를 사용하던 서비스들도 문제 생김
 	
-	※ 2022.2 현재: 최신 버젼은 3.6.0,  CDN 최신 버젼은 3.6.0
+	※ 2023.5 현재: 최신 버젼은 3.7.0,  CDN 최신 버젼은 3.7.0
  -->
-<script></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 <script>
 
-// TODO
+$(document).ready(function(){   // 웹페이지 로딩 끝나면 실행하는 함수 등록
+	$("p").click(function(){   // "p" element 가 click 되면 실행되는 함수 등록
+		$(this).hide();        // 위 click 된 요소 감추기
+	});
+});
 
 </script>
  

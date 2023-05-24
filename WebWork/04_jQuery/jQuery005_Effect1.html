@@ -13,7 +13,7 @@ p {
 </style>
 </head>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 
 <script>
 // hide(), show(), toggle() 함수
@@ -26,32 +26,33 @@ $(document).ready(function(){
 	// #hide1 버튼이 click 되면 #p1 을 hide() 
 	// #show1 버튼이 click 되면 #p1 을 show()
     $("#hide1").click(function(){
-		$("#p1");  // TODO
+		$("#p1").hide();  // TODO
     });
     $("#show1").click(function(){
-        $("#p1");  // TODO
+        $("#p1").show();  // TODO
     });
 
     $("#hide2").click(function(){
-		$("#p21");  // TODO
-		$("#p22");
-		$("#p23");
+		$("#p21").hide("slow");  // TODO
+		$("#p22").hide("fast");
+		$("#p23").hide(2000);
+		//alert("짜잔");
     });
     
     // #show2 버튼을 click 하면 위의 3개가 show()
     // show()의 매개변수 주기
     $("#show2").click(function(){
-		$("#p21");  // TODO
-		$("#p22");
-		$("#p23");
+		$("#p21").show("slow");  // TODO
+		$("#p22").show("fase");
+		$("#p23").show(2000);
     });
     
     // #toggle2 버튼을 click 하면 위의 3개가 toggle()
     // toggle() 의 매개변수 주기
     $("#toggle2").click(function(){
-		$("#p21");  // TODO
-		$("#p22");
-		$("#p23");
+		$("#p21").toggle("slow");  // TODO
+		$("#p22").toggle("fast");
+		$("#p23").toggle(2000);
     });
 
 // fadeIn() fadeOut() fadeToggle() fadeTo() 함수
@@ -62,42 +63,42 @@ $(document).ready(function(){
 //$(selector).fadeTo(speed,opacity,callback);
 
     $("#fadeOut1").click(function(){
-        $("#p3"); // TODO
+        $("#p3").fadeOut();
     });
 	
     $("#fadeIn1").click(function(){
-		$("#p3"); // TODO
+		$("#p3").fadeIn();
     });
 
 	// #fadeOut2 버튼을 click() 하면 
 	// 위 3개 #p41, #p42, #p43 을 fadeOut()
 	// 매개변수 주기
     $("#fadeOut2").click(function(){
-        $("#p41");  // TODO
-        $("#p42");
-        $("#p43");
+        $("#p41").fadeOut("slow");  // TODO
+        $("#p42").fadeOut("fast");
+        $("#p43").fadeOut(2000);
     });
 	
     $("#fadeIn2").click(function(){
-        $("#p41");  // TODO
-        $("#p42");
-        $("#p43");
+        $("#p41").fadeIn("slow");  // TODO
+        $("#p42").fadeIn("fast");
+        $("#p43").fadeIn(2000);
     });
     
 	// #fadeToggle2 버튼을 click() 하면 
 	// 위 3개 #p41, #p42, #p43 을 fadeToggle()
 	// 매개변수 주기
     $("#fadeToggle2").click(function(){
-        $("#p41") /* TODO */;
-        $("#p42") /* TODO */;
-        $("#p43") /* TODO */;
+        $("#p41").fadeToggle("slow"); /* TODO */;
+        $("#p42").fadeToggle("fast"); /* TODO */;
+        $("#p43").fadeToggle(2000); /* TODO */;
     });
 
  	// 투명도값: 0 ~ 1.0
     $("#fadeTo3").click(function(){
-    	$("#p51") /* TODO */;
-		$("#p52") /* TODO */;
-        $("#p53") /* TODO */;
+    	$("#p51").fadeTo("slow", 0.15); /* TODO */;
+		$("#p52").fadeTo("slow", 0.4); /* TODO */;
+        $("#p53").fadeTo("slow", 0.7); /* TODO */;
     });
 
 // slideDown() slideUp() slideToggle()
@@ -125,10 +126,11 @@ $(document).ready(function(){
 	// slideToggle() 시키기
 	// 매개변수 주기
 	$("#slideToggle").click(function(){
-		$("#p61") /* TODO */;
-		$("#p62") /* TODO */;
-		$("#p63") /* TODO */;
-		$("#p64") /* TODO */;
+		$("#p61").slideToggle() /* TODO */;
+		$("#p62").slideToggle("slow") /* TODO */;
+		$("#p63").slideToggle("fase") /* TODO */;
+		$("#p64").slideToggle(2000, tada); // 애니메이션이 끝나면 호출되는 callback 등록
+		
 	});
 	 
 });

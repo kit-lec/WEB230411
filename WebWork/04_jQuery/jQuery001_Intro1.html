@@ -8,20 +8,35 @@
 <script>
 function hideP(){
 	
-	// TODO
+	for(e of document.getElementsByTagName("p")){
+		//e.addEventListener("click", function(){
+		//	this.style.display = "none";
+		//});
+
+		e.addEventListener("click", hideElement);
+	}
 
 } // end hideP()
 
 function hideElement()
 {
-	// TODO
+	this.style.display = "none";
 }
 
-// TODO
+// 함수나 변수 이름으로 $ 가능
+$ = 100;
+$ = function(){
+	document.write("<p>hello</p>");
+};
+$();
+
+(function(){
+	document.write("<p>하하하하</p>");
+})();
 
 </script>
 
-<body onload="TODO">
+<body onload="hideP();">
 
 <p>없어지는 마술을 보여줄께.</p>
 <p>요것도.</p>

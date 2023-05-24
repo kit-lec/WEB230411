@@ -58,56 +58,109 @@ p {
  $(document).ready()    :  
  
  -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
  
 <script>
  
 $(document).ready(function(){
 
 	// 클릭하면(click())사라지게 하기
-	// TODO
+	$("#p01").click(function(){
+		$(this).hide();
+	});
 	
 	// 더블클릭하면(dblclick()) 
 	// 사라졌던게 나타나기
-	// TODO
+	$("#p02").dblclick(function(){
+		$("#p01").slideDown();
+	});
 	
 	// 마우스 올려놓으면 (mouseenter())
-	// TODO
+	$("#p03").mouseenter(function(){
+		$(this).html("<b>mouse가</b> 올려짐");
+	});
 	
 	// 마우스 올려져 있다가 나가면 (mouseleave())
-	// TODO
-	
+	$("#p04").mouseleave(function(){
+		$(this).text("<b>mouse</b> 삐짐");
+	});
+
+	$("#p04").mouseenter(function(){
+		$(this).text("mouse 웰컴");
+	});	
 	
 	// 마우스 눌려지면 (mousedown())
-	// TODO
+	$("#p05").mousedown(function(){
+		$(this).css("color", "red");
+	});
 	
 	// 마우스 눌렸다 떼지면 (mouseup())
-	// TODO
+	$("#p06").mouseup(function(){
+		$("#img").attr("src", "../img/example_img_girl.jpg");
+	});
 	
 	// hover(func1, func2)  : mouseenter 와 mouseleave 롤 동시에 처리
 	// 마우스가 들어오면 배경색 노랑색으로
 	// 마우스가 나가면 배경색 cyan 색으로
-	// TODO
+	$("#p07").hover(function(){
+		$(this).css("background-color", "yellow");   
+		//$(this).style.backgroundColor = 'yellow';  // 에러
+		//$(this)[0].style.backgroundColor = 'yellow';  // jQuery object 에서 DOM 객체 꺼내서 사용 가능
+
+	}, function(){
+		$(this).css("background-color", "cyan");
+	});
 	
 	// focus() 되면
 	// 배경색을 노랑색으로 바꾸세요.
-	// TODO
+	$("#p08").focus(function(){
+		$(this).css("background-color", "yellow");
+		$(this).val('focus됨');
+	});
 	
 	// blur() 되면
 	// 배경색을 다시 하얀색으로 바꾸기
-	// TODO
+	$("#p08").blur(function(){
+		$(this).css("background-color", "#fff");
+		$(this).val('blur 됨');
+	});
 	
 	// on(이벤트, func)
 	// on({이벤트1:func1, 이벤트2:func2, ... }) 여러 이벤트 핸들러 지정
-	// TODO
+	$("#p09").on("click", function(){
+		$(this).fadeOut(1500);
+	});
 	
-    // TODO
+    $("#p10").on({
+		mouseenter: function(){
+			$(this).css("background-color", "limegreen");
+		},
+		mouseleave: function(){
+			$(this).css("background-color", "tomato");
+		},
+		click: function(){
+			$(this).css("background-color", "violet");
+		},
+	});
     
  	// off() 는 해당 element 의 특정 이벤트 제거
-    // TODO
+    $("#btnOff").click(function(){
+		$("#p10").off("click");  // click 이벤트 핸들러 제거
+	});
     
   	// 대부분의 jQuery action함수들은 메소드 체이닝(chaining)됨
-  	// TODO
+  	$("#p11")
+		.mouseenter(function(){
+			$(this).css("background-color", "Salmon");
+		})
+		.mouseleave(function(){
+			$(this).css("background-color", "Aquamarine");
+		})
+		.click(function(){
+			$(this).css("background-color", "yellow");
+		})
+		.text("p11 메소드 체이닝")
+		;
 }); 
 </script>
  
