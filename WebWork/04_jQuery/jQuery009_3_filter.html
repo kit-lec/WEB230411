@@ -64,22 +64,27 @@ button {
 	 //---------------------------------------
 	 // ~ .first() : ~ 의 첫번째 요소만 선택
 	 $("#btn11").click(function(){
-		 // TODO
+		 $("li").first().addClass("selected");
 	});
 
 	 // ~ .last() : ~ 의 마지막 요소만 선택
 	 $("#btn12").click(function(){
-		 // TODO
+		 $("#menu1 li").last().addClass("selected");
 	 });
 
 	// ~ .eq(i) : ~ 의 i번째 요소만 선택
 	 $("#btn13").click(function(){
-		 // TODO
+		 $("li").eq(1).addClass("selected");
+		 //$("li:eq(1)").addClass("selected");
+		 //$("li")[1].addClass("selected");  // 동작.x  [] 결과는 DOM element!!!!!!!!!!!!!!
+		 //$("li")[1].classList.add("selected");  // 가능!
+
+		 $("#result").text($("li").eq(1).length);
 	});	
 	
 	// ~ .filter(selector) : ~ 중 selector 지정요소만 선택
 	$("#btn14").click(function(){
-		$("li") /* TODO */;
+		$("li").filter(".a1").addClass("selected");
 	});
 	
 	// ~ .filter(callback함수)
@@ -87,13 +92,15 @@ button {
 	// 위 callback 함수는 참/거짓 을 리턴해주면 된다. => (참) 만 선택 filter 된다
 	$("#btn15").click(function(){		
 		// ↓ <li> 중에서 "차" 가 들어간것만 선택 하기		
-		$("li") /* TODO */;
+		$("li").filter(function(){
+			return $(this).text().indexOf('차') > -1;
+		}).addClass("selected");
 	});
 	
 	// ~ .not(selector) :   : ~ 중 selector 지정요소를  제외
 	// ↓ class 중에 b로 시작하는 것을 가진것들을 제외하기
 	 $("#btn16").click(function(){
-		 $("li") /* TODO */;
+		 $("li").not("[class*='b']").addClass("selected");
 	});
 	 
 	// find() vs filter()

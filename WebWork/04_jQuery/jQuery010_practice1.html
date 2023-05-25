@@ -37,7 +37,26 @@
 //Js009_DOM5_practice1.html의 동작을 jQuery 로 작성해보세요.
 
 $(document).ready(function(){
-	// TODO
+	$("#table1 input").hide();
+
+	$("#table1 span").click(function(){
+		$(this).hide();
+		$(this).next().show().val($(this).text()).focus();
+	});
+
+	function switchInput(e){
+		$(e).hide();
+		$(e).prev().show().text($(e).val());
+	}
+
+	$("#table1 input")
+		.focusout(function(){
+			switchInput(this);
+		})
+		.keyup(function(event){
+			(event.keyCode == 13) && switchInput(this);
+		})
+		;
 })
 
 </script>

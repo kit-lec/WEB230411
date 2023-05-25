@@ -6,7 +6,8 @@
 <style>
 .important {
     font-weight: bold;
-    font-size: xx-large;
+    font-size: x-large;
+    color: red;
 }
 
 h1, h2, p, div {
@@ -33,19 +34,20 @@ jQuery 는 이를 간단히 구현하는 함수들 제공
 
 $(document).ready(function(){
     $("#btn01").click(function(){
-        $("h1, h2, p") /* TODO */;
-        $("div#d01") /* TODO */;
+        $("h1, h2, p").addClass("blue");
+        $("div#d01").addClass("important");
         
-        // TODO
+        // 복수개 class 추가 가능
+        $("div#d02").addClass("important blue");
     });
     
     $("#btn02").click(function(){
-    	$("h1, h2, p") /* TODO */;
+    	$("h1, h2, p").removeClass("blue");
     });
     
     $("#btn03").click(function(){
-        $("h1, h2, p") /* TODO */;
-        $("div#d01") /* TODO */;
+        $("h1, h2, p").toggleClass("blue");
+        $("div#d01").toggleClass("important");
     });
 });
 </script>

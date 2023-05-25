@@ -20,7 +20,21 @@ tr:nth-child(even){
 
 <script>
 $(document).ready(function(){
-	$("#myInput") /* TODO */;
+	$("#myInput").keyup(function(){
+		let value = $(this).val().trim().toLowerCase();
+
+		//$("#demo").text(value);  // 확인
+
+		$("#myTable tr").each(function(){
+			//if($(this).text().toLowerCase().indexOf(value) > -1){
+			//	$(this).show();
+			//} else {
+			//	$(this).hide();
+			//}
+
+			$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+		});
+	});
 	
 });
 </script>

@@ -41,21 +41,21 @@
 $(document).ready(function(){
     $("#btn01").click(function(){
         let txt = [];              // ↓ TODO
-        txt.push("width: " + $("#div1"));
-        txt.push("height: " + $("#div1"));
-        txt.push("innerWidth: " + $("#div1"));
-        txt.push("innerHeight: " + $("#div1"));
-        txt.push("outerWidth: " + $("#div1"));
-        txt.push("outerHeight: " + $("#div1"));
-        txt.push("outerWidth(true): " + $("#div1"));
-        txt.push("outerHeight(true): " + $("#div1"));
+        txt.push("width: " + $("#div1").width());
+        txt.push("height: " + $("#div1").height());
+        txt.push("innerWidth: " + $("#div1").innerWidth());
+        txt.push("innerHeight: " + $("#div1").innerHeight());
+        txt.push("outerWidth: " + $("#div1").outerWidth());
+        txt.push("outerHeight: " + $("#div1").outerHeight());
+        txt.push("outerWidth(true): " + $("#div1").outerWidth(true));
+        txt.push("outerHeight(true): " + $("#div1").outerHeight(true));
         $("#div1").html(txt.join("<br>"));
 
     });
     
     // width() , height() 에 매개변수 값을 주면  새로운 값으로 세팅 된다
     $("#btn02").click(function(){
-        $("#div1") // TODO       
+        $("#div1").width(500).height(200);
     });
 
     
@@ -65,31 +65,32 @@ $(document).ready(function(){
 
     function sizeDocWin(){
 		let txt = [];
-        txt.push("Docuement W/H: ");  // ← TODO
-		txt.push("Window W/H: ");
+        txt.push("Docuement W/H: " + $(document).width() + " x " + $(document).height());  // ← TODO
+		txt.push("Window W/H: " + $(window).width() + " x " + $(window).height());
 		$("#div2").html(txt.join("<br>"));
     }
     $("#btn03").click(sizeDocWin);
     
     // 브라우저 창의 크기가 변할때 발생하는 onresize 이벤트 핸들러
     
-    // TODO
+    $(window).resize(sizeDocWin);
     
     
     // position() 함수
     // 리턴값의 left, top property 값에 좌표 저장
     $("#btn04").click(function(){
 		$("#div3").animate({
-            // TODO
-        });        
+            left: "200px",
+            top: "10px",
+        }, 4000);        
     });
 
     
 	// TODO
     
     $("#btn05").click(function(){
-    	const pos = $("#div3");  // TODO
-    	const txt = "";  // TODO
+    	const pos = $("#div3").position();
+    	const txt = `${pos.left}<br>${pos.top}`;  // TODO
     	$("#div3").html(txt);
     });
     

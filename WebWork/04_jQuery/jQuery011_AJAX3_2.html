@@ -47,33 +47,83 @@ http://openapi.seoul.go.kr:8088/(인증키)/json/subwayStationMaster/1/5/
 
 
 <script>
-var api_key = "너의 키값은?";
+var api_key = "4d46796d7366726f3833774a774955";
 
 $(document).ready(function(){
 	 $("#btn_load").click(function(){
 		// 입력정보 가져오기		
-		// TODO
-
+		var start = $('#start').val();
+		var end = $('#end').val();
+		var url;
 
 		// XML
-		// TODO
+		url = `http://openapi.seoul.go.kr:8088/${api_key}/xml/subwayStationMaster/${start}/${end}/`
+
+		$.ajax({
+			url :  url,
+			type : "GET",
+			cache : false,
+			success : function(data, status){
+				(status == "success") && parseXML(data);
+			}
+		});
 
 		// JSON
-		// TODO		
+		var url = `http://openapi.seoul.go.kr:8088/${api_key}/json/subwayStationMaster/${start}/${end}/`
+		 
+		$.ajax({
+			url :  url,
+			type : "GET",
+			cache : false,
+			success : function(data, status){
+				(status == "success") && parseJSON(data);
+			}
+		 });
+		
 	 });
 	 
 	 $("#btn_remove").click(function(){
-		// TODO
+		$("#demoXML").empty();
+		$("#demoJSON").empty();
 	 });
 });
 
-
 function parseXML(xmlDOM) {
-	// TODO
+
+	const table = [];
+	table.push("<tr><th>역명</th><th>아이디</th><th>호선</th><th>위도</th><th>경도</th></tr>");
+
+	$(xmlDOM).find("row").each(function(){	  
+		table.push(`
+		<tr>
+			<td>${$(this).find('STATN_NM').text()}</td>
+			<td>${$(this).find('STATN_ID').text()}</td>
+			<td>${$(this).find('ROUTE').text()}</td>
+			<td>${$(this).find('CRDNT_X').text()}</td>
+			<td>${$(this).find('CRDNT_Y').text()}</td>
+		</tr>
+		`);
+	});
+	$("#demoXML").html(table.join('\n'));  
 }
 
 function parseJSON(jsonObj){
-	// TODO
+	
+	const table = [];
+	table.push("<tr><th>역명</th><th>아이디</th><th>호선</th><th>위도</th><th>경도</th></tr>");
+
+	jsonObj.subwayStationMaster.row.forEach(row => {
+		table.push(`
+		<tr>
+			<td>${row.STATN_NM}</td>
+			<td>${row.STATN_ID}</td>
+			<td>${row.ROUTE}</td>
+			<td>${row.CRDNT_X}</td>
+			<td>${row.CRDNT_Y}</td>
+		</tr>
+		`);
+	});
+	$("#demoJSON").html(table.join('\n'));
 }
 </script>
 

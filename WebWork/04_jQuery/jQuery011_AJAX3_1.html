@@ -83,7 +83,7 @@ dataFilter(data,type) :
 	
 */
 
-var api_key = "보여다오 당신의 키값을!";
+var api_key = "4d46796d7366726f3833774a774955";
  
  $(document).ready(function(){
 	 $("#btn_load").click(function(){
@@ -92,14 +92,28 @@ var api_key = "보여다오 당신의 키값을!";
 		 // XML
 		 var url = "http://openapi.seoul.go.kr:8088/" + api_key + "/xml/CardSubwayStatsNew/1/5/" + date;
 		
-		// TODO
+		$.ajax({
+			url: url, 
+			type: "GET",
+			cache: false, // 브라우저에서 cache 한 결과 사용하지 않게 하기
+			success: function(data, status){
+				(status == "success") && parseXML(data);
+			},
+		});
 		 
 		 
 		 
 		// JSON
 		url = "http://openapi.seoul.go.kr:8088/" + api_key + "/json/CardSubwayStatsNew/1/5/" + date;
 		 
-		// TODO
+		$.ajax({
+			url: url,
+			type: "GET",
+			cache: false,
+			success: function(data, status){
+				(status == "success") && parseJSON(data);
+			},
+		});
 		
 	 });
 	 
@@ -113,17 +127,19 @@ var api_key = "보여다오 당신의 키값을!";
 	// ↓ jQuery 사용 버젼으로 수정해보기
 	const table = [];
 	table.push("<tr><th>호선</th><th>역명</th><th>승차인원</th><th>하차인원</th></tr>");
-	for(row of xmlDOM.getElementsByTagName("row")){
+
+	$(xmlDOM).find("row").each(function(){
 		table.push(`
 		<tr>
-			<td>${row.getElementsByTagName("LINE_NUM")[0].childNodes[0].nodeValue}</td>
-			<td>${row.getElementsByTagName("SUB_STA_NM")[0].childNodes[0].nodeValue}</td>
-			<td>${row.getElementsByTagName("RIDE_PASGR_NUM")[0].childNodes[0].nodeValue}</td>
-			<td>${row.getElementsByTagName("ALIGHT_PASGR_NUM")[0].childNodes[0].nodeValue}</td>
+			<td>${$(this).find("LINE_NUM").text()}</td>
+			<td>${$(this).find("SUB_STA_NM").text()}</td>
+			<td>${$(this).find("RIDE_PASGR_NUM").text()}</td>
+			<td>${$(this).find("ALIGHT_PASGR_NUM").text()}</td>
 		</tr>
-		`);
-	}
-	document.getElementById('demoXML').innerHTML = table.join('\n');
+		`);		
+	});
+
+	$("#demoXML").html(table.join('\n'));
 }
 
 function parseJSON(jsonObj) {
@@ -140,7 +156,7 @@ function parseJSON(jsonObj) {
 		</tr>
 		`);
 	}
-	document.getElementById('demoJSON').innerHTML = table.join('\n');
+	$("#demoJSON").html(table.join('\n'));
 }
 </script>
 
