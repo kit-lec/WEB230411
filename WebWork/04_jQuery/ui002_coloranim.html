@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <!-- <link rel="stylesheet" href="https://jqueryui.com/resources/demos/style.css">  -->
 <!-- 아래 코드 빼면 color animation 안됨 -->
-<!--  TODO --> 
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> 
 
  <style>
    .toggler { width: 500px; height: 200px; position: relative; }
@@ -22,9 +22,20 @@
 $(function() {
   let state = true;
   $("#button").click(function(){
-
-    // TODO
-    
+      if(state){
+        $("#effect").animate({
+            backgroundColor: "#aa0000",
+            color: "#fff",
+            width: 500
+        }, 1000);
+      } else {
+        $("#effect").animate({
+          backgroundColor: "#fff",
+          color: "#000",
+          width: 240
+        }, 1000);
+      }
+      state = !state;    
   });
 });
 </script>

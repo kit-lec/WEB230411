@@ -49,7 +49,24 @@ $(document).ready(function(){
 		  var $box2 = $(".box2");
 		  var $box3 = $(".box3");
 
-		  // TODO
+		  $box1.animate({left: "200px"}, 1000);
+		  $box2.animate({top: "0px"}, 1500);
+		  //$box3.animate({top: "150px"}, 1500);
+
+		// $box1 과 $box2 의 애니메이션이 다 끝나고 나서 $box3 가 움직이게 하려면?
+   		  // 전제 
+		  //  : $box1 과 $box2 중 누가 먼저 끝날른지는 모른다
+		  //  : $box1 과 $box2가 언제 끝날른지는 모른다
+
+		  // 방법1
+		  // delay()  (앞의 작업이 얼마나 걸리는지를 안다면)
+		  // $box3.delay(1500).animate({top: "150px"}, 1500);
+
+		  $.when($box1, $box2)
+		  	.then(() => {
+				//alert("완료!");
+				$box3.animate({top: "150px"}, 1500);
+			});
 		  
 	});	
 });

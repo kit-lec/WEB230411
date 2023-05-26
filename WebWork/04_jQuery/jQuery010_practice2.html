@@ -75,8 +75,103 @@
     // 아래의 HTML 은 수정하지 마세요
     // 아래 HTML 안에 inline JS 코드 없이 동작할수 있도록 아래에 작성해보세요
 
-    // TODO
+    $(document).ready(function () {
+        $options = $("input[name='option']");
+        let $forms = $(".inner_table");
 
+        // 최초에는 첫번째 form 만 보이게 하기
+        $forms.eq(0).show();
+        $forms.eq(1).hide();
+        $forms.eq(2).hide();
+
+        $options.change(function () {        
+            $options.each(function (index) {
+                if ($(this).is(':checked')) {
+                    $forms.eq(index).show();
+                } else {
+                    $forms.eq(index).hide();
+                }
+            });
+
+            // 만약 i번째를 안다면 이렇게도 만들수 있겠다
+            //$forms.eq(i).show();
+            //$forms.eq(i).siblings(".inner_table").hide();
+
+            // 물론 아래와 같이 만들수도 있을것이다.
+            //let $radios = $("[name='option']");
+            //for (let i = 0; i < $radios.length; i++) {
+            //   if ($radios.eq(i).val() == $(this).val()) {
+            //        // $tables.eq(i).removeClass("hidden");
+            //        $forms.eq(i).show();
+            //    } else {
+            //        // $tables.eq(i).addClass("hidden");
+            //        $forms.eq(i).hide();
+            //    }
+            //}
+
+        });
+
+        $("#btn").click(function () {
+            let op = $("[name='option']:checked").val();
+            let $form, $name, $price, $email;
+            switch (op) {
+                case "구매자명+금액":
+                    $form = $("[name='frm1']");
+                    $name =  $form.find("[name='name']");
+                    $price = $form.find("[name='price']");
+
+                    // 구매자명 유효성 검사
+                    if ($name.val().trim() == "") {
+                        alert("구매자명을 입력하세요.");
+                        $name.focus();
+                        return;
+                    }
+                    // 결제금액 유효성 검사
+                    if ($price.val().trim() == "" || $price.val().trim() < 0) {
+                        alert("결제금액을 입력하세요.");
+                        $price.focus();
+                        return;
+                    }
+
+                    // 구매자명 + 금액 submit
+                    $form.submit();
+                    break;
+                case "이메일":
+                    $form = $("[name='frm2']");
+                    $email = $form.find("[name='email']");
+                    const emailPat = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/; // email 패턴에 대한 정규표현식
+                    // 이메일 유효성 검사
+                    if (!emailPat.test($email.val().trim())) {
+                        alert("이메일을 정확하게 입력하세요.");
+                        $email.focus();
+
+                        return;
+                    }
+
+                    // 이메일 submit
+                    $form.submit();
+                    break;
+                case "카드번호":
+                    $form = $("[name='frm3']");
+
+                    // 카드번호 유효성 검사
+                    const numPat = /^\d{4}$/;
+
+                    for(e of $form.find("[name='cardNum']")){
+                        if(!numPat.test(e.value.trim())){
+                            alert("카드번호를 정확히 입력하세요");
+                            e.focus();
+    
+                            return;
+                        }
+                    }
+
+                    // 카드번호 submit
+                    $form.submit();
+                    break;
+            }
+        });
+    });
 </script>
 
 <body>
@@ -100,7 +195,7 @@
                 </tr>
             </table>
         </form>
-        <form class="inner_table hidden" name="frm2" action="https://www.w3schools.com/action_page.php" method="get">
+        <form class="inner_table" name="frm2" action="https://www.w3schools.com/action_page.php" method="get">
             <table>
                 <tr>
                     <th>이메일</th>
@@ -108,7 +203,7 @@
                 </tr>
             </table>
         </form>
-        <form class="inner_table hidden" name="frm3" action="https://www.w3schools.com/action_page.php" method="get">
+        <form class="inner_table" name="frm3" action="https://www.w3schools.com/action_page.php" method="get">
             <table>
                 <tr>
                     <th>카드번호</th>

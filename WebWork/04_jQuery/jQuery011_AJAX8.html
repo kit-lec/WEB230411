@@ -35,11 +35,11 @@ http://kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.json?key=f
 <body>
 <h1>$.ajax() : 영화목록조회</h1>
 <form name="frm">
-영화명: <input type="text" name="movieNm" placeholder="검색할 영화명 입력.."><br>
-조회시작 개봉연도(yyyy): <input type="number" name="openStartDt" placeholder="yyyy"/><br>
+영화명: <input type="text" name="movieNm" placeholder="검색할 영화명 입력.." value="미션"><br>
+조회시작 개봉연도(yyyy): <input type="number" name="openStartDt" placeholder="yyyy" value="2000"/><br>
 출력ROW : <input type="number" value="10" name="itemPerPage"><br>
 출력페이지 : <input type="number" value="1" name="curPage"><br>
-<!-- TODO -->
+<input type="hidden" value="" name="key">
 <br><br>
 
 <button type="button" id="btnLoad">정보 가져오기</button>
@@ -53,38 +53,102 @@ http://kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.json?key=f
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 <script>
-var api_key = "당신의 키값은?";  // 자신의 키값 입력하기!
+var api_key = "17dc4bdf2fa4152e2630184cec7e331c";  // 자신의 키값 입력하기!
 var req_url = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.json";
 
-// TODO
-// jQuery 함수를 사용하여 구현하기
+$(function(){
+	$("#btnLoad").click(function(){
+		var movieNm = $("[name='movieNm']").val();
+		var openStartDt =$("[name='openStartDt']").val();
+		var itemPerPage = $("[name='itemPerPage']").val();
+		var curPage = $("[name='curPage']").val();
+		$("[name='key']").val(api_key);
 
+		// 유효성 검사
+		
+		// 영화명
+		if(movieNm == ""){
+			alert("영화명을 반드시 입력해야 합니다");
+			$("[name='movieNm']").focus();
+			return;
+		}
+		// 개봉년도
+		var openStartDtPat = /^[0-9]{4}$/;
+		if(!openStartDtPat.test(openStartDt)){
+			alert("날짜포맷이 맞지않습니다.")
+			$("[name='openStartDt']").focus();
+			return;	
+		}
+		// 출력ROW
+		if(isNaN(itemPerPage) || itemPerPage < 1 || itemPerPage > 10){
+			alert("출력ROW는 1~10사이의 정수이어야 합니다")
+			$("[name='itemPerPage']").focus();
+			return;
+		}
+		// 출력페이지
+
+		if(isNaN(curPage) || curPage < 1 ){
+			alert("페이지는는 1이상의 정수이어야 합니다")
+			$("[name='curPage']").focus();
+			return;
+		}
+
+		// JSON
+		var url = req_url;
+
+		//url += `?key=${api_key}`
+		//		+ `&movieNm=${encodeURI(movieNm)}`
+		//		+ `&openStartDt=${openStartDt}`
+		//		+ `&itemPerPage=${itemPerPage}`
+		//		+ `&curPage=${curPage}`
+//
+		// 위와 같이 query string 만들면 피곤하다
+		// serialize() : 특정 form 의 name 이 달린 form element 들의 입력값으로 query string 생성
+		var qry = $("[name='frm']").serialize();
+		//alert(qry);
+						
+		$.ajax({
+			url: url,
+			type: "GET",
+			data: qry,  // query string 을 data 에 담아보냄			
+			cache: false,
+			success: function(data, status){
+				if(status == "success") parseJSON(data);
+			}
+		})
+
+	});
+	
+	$("#btnRemove").click(function(){
+		$("#demoJSON").empty();
+	})
+});
 
 function parseJSON(jsonObj){
 	
-	var list = jsonObj.movieListResult.movieList;
+	var table = [];
+	table.push("<tr><td>영화명</td><td>개봉일</td><td>감독(들)</td><td>제작사(들)</td></tr>");
 
-	var table = "<tr><td>영화명</td><td>개봉일</td><td>감독(들)</td><td>제작사(들)</td></tr>";
-
-	for(i = 0; i < list.length; i++){
+	jsonObj.movieListResult.movieList.forEach(movie => {
+		table.push(`<tr>`);
+		table.push(`<td>${movie.movieNm}</td>`);
+		table.push(`<td>${movie.prdtYear}</td>`);
+		
 		var directors = [];
+		movie.directors.forEach(director => {
+			directors.push(director.peopleNm)
+		});
 		var companys = [];
-		table += "<tr>";
-		table += "<td>" + list[i].movieNm + "</td>";
-		table += "<td>" + list[i].prdtYear + "</td>";
+		movie.companys.forEach(company => {
+			companys.push(company.companyNm);
+		});
+		
+		table.push(`<td>${directors}</td>`);
+		table.push(`<td>${companys}</td>`);
+		table.push(`</tr>`);
+	});
 	
-		for(l = 0; l < list[i].directors.length; l++){
-			directors.push(list[i].directors[l].peopleNm)
-		}
-		for(l = 0; l < list[i].companys.length; l++){
-			companys.push(list[i].companys[l].companyNm)
-		}
-		table += "<td>" + directors.toString() + "</td>";	
-		table += "<td>" + companys.toString() + "</td>";
-		table += "</tr>"
-	}
-	
-	$("#demoJSON").html(table);
+	$("#demoJSON").html(table.join('\n'));
 }
 </script>
 
