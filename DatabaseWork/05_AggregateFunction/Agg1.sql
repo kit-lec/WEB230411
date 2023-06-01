@@ -44,7 +44,28 @@ HAVING avg(pay) >= 450
 -- HAVING                - (4)
 -- ORDER BY              - (6)
 
--- TODO
+--  #5104
+SELECT deptno1 "학과", max(weight) - min(weight) "최대최소몸무게차"
+FROM t_student
+GROUP BY deptno1
+HAVING (max(weight) - min(weight)) >= 30
+;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
