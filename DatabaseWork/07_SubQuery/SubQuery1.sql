@@ -19,7 +19,16 @@ WHERE
 	;
 
 -- #7104
--- TODO
+--t_professor, t_department 테이블 : 
+--입사일이 송도권 교수보다 나중에 입사한 사람의 
+--이름과 입사일, 학과명을 출력하세요
+
+SELECT p.name "교수명", 
+	date_format(p.hiredate, '%Y-%m-%d') "입사일", 
+	d.dname "학과명"
+FROM t_professor p, t_department d
+WHERE p.deptno = d.deptno
+	AND p.hiredate > (SELECT hiredate FROM t_professor WHERE name = '송도권');
 
 SELECT hiredate FROM t_professor WHERE name = '송도권';
 
@@ -31,8 +40,39 @@ WHERE p.deptno = d.deptno AND p.hiredate > (SELECT hiredate FROM t_professor WHE
 ;
 
 -- 과제
--- #7105
--- #7106
+-- #7105) 연습
+-- t_student 테이블 : 
+-- 1전공이 101번인 학과의 평균 몸무게보다 몸무게가 많은 학생들의 
+-- 이름과 몸무게를 출력하세요
+
+SELECT name "이름", weight "몸무게"
+FROM t_student
+WHERE weight > (SELECT avg(weight) FROM t_student WHERE deptno1=101);
+			
+-- #7106) 연습
+-- t_professor 테이블에서 
+-- 심슨 교수와 같은 입사일에 입사한 교수 중, 
+-- 조인형 교수보다 월급을 적게 받는 교수의 
+-- 이름과 급여, 입사일을 출력하세요
+
+SELECT 
+	name "이름", 
+	pay "급여", 
+	hiredate "입사일"
+FROM 
+	t_professor
+WHERE 
+	hiredate = 
+			( SELECT hiredate
+			FROM t_professor
+			WHERE name = '심슨')
+	AND 
+	pay < ( 
+		SELECT pay
+		FROM t_professor
+		WHERE name = '조인형'
+	);
+
 
 
 
@@ -85,8 +125,29 @@ WHERE pay > (SELECT min(pay) FROM t_emp2 WHERE post = '과장');
 
 
 -- 과제
--- #7109
--- #7110
+-- #7109) 연습
+-- t_student 테이블 : 
+-- 전체학생중에서 체중이 4학년 학생들의 체중에서 
+-- 가장 적게 나가는 학생보다 
+-- 몸무게가 적은 학생의 이름과 학년과 몸무게를 출력하세요
+
+SELECT name "이름", grade "학년", weight "몸무게"
+FROM t_student
+WHERE weight <ALL (SELECT weight FROM t_student WHERE grade = 4 );
+
+-- WHERE weight < (SELECT min(weight) FROM t_student WHERE grade = 4 );  -- 가능
+		
+		
+-- #7110) 연습
+-- t_emp2, t_dept2 테이블 : 
+-- 각 부서별 평균 연봉을 구하고 그 중에서 평균 연봉이 가장 적은 부서의 평균연봉보다 
+-- 적게 받는 직원들의 부서명, 직원명, 연봉을 출력 하세요
+		
+SELECT d.dname "부서명", e.name "사원명", e.pay "연봉"
+FROM t_emp2 e, t_dept2 d
+WHERE e.deptno = d.dcode
+AND e.pay < ALL ( SELECT AVG(pay) FROM t_emp2 GROUP BY deptno )
+ORDER BY e.pay;
 
 
 

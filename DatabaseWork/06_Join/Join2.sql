@@ -108,6 +108,27 @@ WHERE d1.PDEPT = d2.dcode;
    
 -- # 과제
 -- #6210
+-- t_professor 테이블 : 교수번호, 교수이름, 입사일, 
+-- 그리고 자신보다 입사일 빠른 사람의 인원수를 출력하세요, 
+-- 단 자신보다 입사일이 빠른 사람수를 오름차순으로 출력하세요
+-- hint: left outer 사용 
+--         / 그룹함수 사용
+
+-- left outer 를 사용하는 이유는 '조인형' 교수 때문.
+-- 조인형 교수보다 먼저 입사한 사람이 없기 때문에 일반 join으론 하면 조인형 교수가 join 에서 빠져버린다.
+
+SELECT	
+	a.profno "교수번호",
+	a.name "교수명",
+	date_format(a.hiredate, '%Y-%m-%d') "입사일",
+	count(b.hiredate) "빠른사람"
+FROM t_professor a 
+	LEFT OUTER JOIN t_professor b 
+	ON b.hiredate < a.hiredate
+GROUP BY 
+	a.profno, a.name, a.hiredate
+ORDER BY 빠른사람
+;
 
 
 
