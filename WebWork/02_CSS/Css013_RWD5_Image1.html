@@ -12,17 +12,21 @@ https://www.w3schools.com/howto/howto_css_image_responsive.asp
 
 /* image 가  확대축소 되게 하려면  */
 .responsive1 {
-    /* TODO */
+    width: 100%;
+    height: auto;  /* 종횡비 유지*/
 }
 
 /* 화면이 커져도 이미지 '원래 크기' 이상 늘어나지 않게 하기 */
 .responsive2 {
-    /* TODO */
+    max-width: 100%;  /* 이미지 원래의 크기 100% 만큼이 최대치 */
+    height: auto;
 }
 
 /* image 를 특정 maximum 사이즈 이내로 국한시킬 경우 */
 .responsive3 {
-    /* TODO */
+    width: 100%;
+    height: auto;
+    max-width: 400px;
 }
 
 </style>

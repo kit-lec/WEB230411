@@ -18,7 +18,7 @@ div.pop {
 
 /* 기본적으로 CSS는 적층형 (덮어쓰기) 으로 적용된다. */
 body {
-	/* TODO */
+	background-color: cyan;
 }
 
 /* @media 에서
@@ -26,7 +26,37 @@ body {
 	min-width: ~ : ~ 보다 큰 경우 
 */
 
-/* TODO */
+@media screen and (max-width: 600px){ /* 화면이 600px 이하일때 적용 */
+	body {background-color: lightblue;}
+
+	p {color: red;}
+}
+
+@media screen and (min-width: 600px){  /* 화면이 600px 보다 커지면 적용 */
+	body {color: blue;}
+
+	p {background-color: orange;}
+
+	div.pop {display: none;}
+}
+
+
+/*
+	landscape vs. portrait
+	종횡비에 따른 적용
+*/
+
+@media screen and (orientation: landscape) {
+	h2::after {
+	  content : " : landscape";
+	}
+}
+
+@media screen and (orientation: portrait) {
+	h2::after {
+	  content : " : portrait";
+	}
+}
 
 
 </style>
