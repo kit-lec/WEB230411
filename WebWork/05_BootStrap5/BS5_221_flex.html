@@ -28,14 +28,27 @@
   <p><code>.d-flex</code> 를 사용하여 flex container 를 만들면<br>
     그 아래의 child element 들은 자동으로 flex item 이 됩니다.
   </p>
-    <!-- TODO -->
+    <div class="d-flex p-3 bg-secondary text-white">
+      <div class="p-2 bg-info">Flex item 1</div>
+      <div class="p-2 bg-warning">Flex item 2</div>
+      <div class="p-2 bg-primary">Flex item 3</div>
+    </div>
 
   <hr>
 
   <div class="container mt-3">
     <h2>Inline Flex</h2>
     <p><code>.d-inline-flex</code> inline flexbox container 생성</p>
-    <!-- TODO -->
+    <div class="d-inline-flex p-3 bg-secondary text-white">
+      <div class="p-2 bg-info">Flex item 1</div>
+      <div class="p-2 bg-warning">Flex item 2</div>
+      <div class="p-2 bg-primary">Flex item 3</div>
+    </div>
+    <div class="d-inline-flex p-3 bg-secondary text-white">
+      <div class="p-2 bg-info">Flex item 1</div>
+      <div class="p-2 bg-warning">Flex item 2</div>
+      <div class="p-2 bg-primary">Flex item 3</div>
+    </div>
   </div>
 
   <hr>
@@ -43,10 +56,18 @@
   <div class="container mt-3">
     <h2>Horizontal Direction</h2>
     <p><code>.flex-row</code> to make the flex items appear side by side (default):</p>
-    <!-- TODO -->
+    <div class="d-flex flex-row p-3 bg-secondary text-white">
+      <div class="p-2 bg-info">Flex item 1</div>
+      <div class="p-2 bg-warning">Flex item 2</div>
+      <div class="p-2 bg-primary">Flex item 3</div>
+    </div>
 
     <p><code>.flex-row-reverse</code> to right-align the direction:</p>
-    <!-- TODO -->
+    <div class="d-flex flex-row-reverse p-3 bg-secondary text-white">
+      <div class="p-2 bg-info">Flex item 1</div>
+      <div class="p-2 bg-warning">Flex item 2</div>
+      <div class="p-2 bg-primary">Flex item 3</div>
+    </div>
   </div>
 
   <hr>
@@ -54,10 +75,18 @@
   <div class="container mt-3">
     <h2>Vertical Direction</h2>
     <p><code>.flex-column</code> to display the flex items vertically (on top of each other):</p>
-    <!-- TODO -->
+    <div class="d-flex flex-column p-3 bg-secondary text-white">
+      <div class="p-2 bg-info">Flex item 1</div>
+      <div class="p-2 bg-warning">Flex item 2</div>
+      <div class="p-2 bg-primary">Flex item 3</div>
+    </div>
 
     <p><code>.flex-column-reverse</code> to reverse the vertical direction:</p>
-    <!-- TODO -->
+    <div class="d-flex flex-column-reverse p-3 bg-secondary text-white">
+      <div class="p-2 bg-info">Flex item 1</div>
+      <div class="p-2 bg-warning">Flex item 2</div>
+      <div class="p-2 bg-primary">Flex item 3</div>
+    </div>
 
   </div>
 
@@ -66,7 +95,32 @@
   <div class="container mt-3">
     <h2>Justify content</h2>
     <p><code>.justify-content-*</code> classes to change the alignment of flex items. Choose from start (default), end, center, between or around:</p>
-    <!-- TODO -->
+    <div class="d-flex justify-content-start p-3 bg-secondary text-white mb-3">
+      <div class="p-2 bg-info">Flex item 1</div>
+      <div class="p-2 bg-warning">Flex item 2</div>
+      <div class="p-2 bg-primary">Flex item 3</div>
+    </div>
+    <div class="d-flex justify-content-end p-3 bg-secondary text-white mb-3">
+      <div class="p-2 bg-info">Flex item 1</div>
+      <div class="p-2 bg-warning">Flex item 2</div>
+      <div class="p-2 bg-primary">Flex item 3</div>
+    </div>
+    <div class="d-flex justify-content-center p-3 bg-secondary text-white mb-3">
+      <div class="p-2 bg-info">Flex item 1</div>
+      <div class="p-2 bg-warning">Flex item 2</div>
+      <div class="p-2 bg-primary">Flex item 3</div>
+    </div>
+    <div class="d-flex justify-content-between p-3 bg-secondary text-white mb-3">
+      <div class="p-2 bg-info">Flex item 1</div>
+      <div class="p-2 bg-warning">Flex item 2</div>
+      <div class="p-2 bg-primary">Flex item 3</div>
+    </div>
+    <div class="d-flex justify-content-around p-3 bg-secondary text-white mb-3">
+      <div class="p-2 bg-info">Flex item 1</div>
+      <div class="p-2 bg-warning">Flex item 2</div>
+      <div class="p-2 bg-primary">Flex item 3</div>
+    </div>
+    
 
   </div>
 
@@ -75,10 +129,20 @@
   <div class="container mt-3">
     <h2>Fill / Equal Widths</h2>
     <p><code>.flex-fill</code> on flex items to force them into equal widths:</p>
-    <!-- TODO -->
+    <div class="d-flex p-3 bg-secondary text-white mb-3">
+      <div class="p-2 flex-fill bg-info">Flex item 1</div>
+      <div class="p-2 flex-fill bg-warning">Flex item 2</div>
+      <div class="p-2 flex-fill bg-primary">Flex item 3</div>
+    </div>
+
 
     <p>Example without .flex-fill:</p>
-    <!-- TODO -->
+    <div class="d-flex p-3 bg-secondary text-white mb-3">
+      <div class="p-2 bg-info">Flex item 1</div>
+      <div class="p-2 bg-warning">Flex item 2</div>
+      <div class="p-2 bg-primary">Flex item 3</div>
+    </div>
+
 
   </div>
 
@@ -87,10 +151,20 @@
   <div class="container mt-3">
     <h2>Grow</h2>
     <p><code>.flex-grow-1</code> on a flex item to take up the rest of the space:</p>
-    <!-- TODO -->
+    <div class="d-flex p-3 bg-secondary text-white mb-3">
+      <div class="p-2 bg-info">Flex item 1</div>
+      <div class="p-2 bg-warning">Flex item 2</div>
+      <div class="p-2 bg-primary flex-grow-1">Flex item 3</div>
+    </div>
+
 
     <p>Example without .flex-grow-1:</p>
-    <!-- TODO -->
+    <div class="d-flex p-3 bg-secondary text-white mb-3">
+      <div class="p-2 bg-info">Flex item 1</div>
+      <div class="p-2 bg-warning">Flex item 2</div>
+      <div class="p-2 bg-primary">Flex item 3</div>
+    </div>
+
 
   </div>
 

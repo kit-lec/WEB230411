@@ -34,12 +34,12 @@ font-family → "Helvetica Neue", Helvetica, Arial, sans-serif.
   <!-- .h1 ~ .h6 class 를 사용하면 마치 h1, ~ h6 element 인것처럼 동작함
   -->
   <div class="container mt-3">
-    <p class="TODO">h1 Bootstrap heading</p>
-    <p class="TODO">h2 Bootstrap heading</p>
-    <p class="TODO">h3 Bootstrap heading</p>
-    <p class="TODO">h4 Bootstrap heading</p>
-    <p class="TODO">h5 Bootstrap heading</p>
-    <p class="TODO">h6 Bootstrap heading</p>
+    <p class="h1">h1 Bootstrap heading</p>
+    <p class="h2">h2 Bootstrap heading</p>
+    <p class="h3">h3 Bootstrap heading</p>
+    <p class="h4">h4 Bootstrap heading</p>
+    <p class="h5">h5 Bootstrap heading</p>
+    <p class="h6">h6 Bootstrap heading</p>
   </div>
 
   <hr>
@@ -47,31 +47,31 @@ font-family → "Helvetica Neue", Helvetica, Arial, sans-serif.
     <h1>Display Headings</h1>
     <p>Display headings 은 기존 heading 보다 더 강조된 heading (font-size 도 더 크고, font-weight는 더 얇다):</p>
     <p>display-1 ~ display-6 까지 6단계 제공</p>
-    <h1 class="TODO">Display 1</h1>
-    <h1 class="TODO">Display 2</h1>
-    <h1 class="TODO">Display 3</h1>
-    <h1 class="TODO">Display 4</h1>
-    <h1 class="TODO">Display 5</h1>
-    <h1 class="TODO">Display 6</h1>
+    <h1 class="display-1">Display 1</h1>
+    <h1 class="display-2">Display 2</h1>
+    <h1 class="display-3">Display 3</h1>
+    <h1 class="display-4">Display 4</h1>
+    <h1 class="display-5">Display 5</h1>
+    <h1 class="display-6">Display 6</h1>
   </div>
 
   <hr>
   <div class="container mt-3">
     <h1>Lighter, Secondary Text</h1>
     <p>&lt;small&gt; 을 사용해서 부제목 과 같은 효과 (좀 더 얇은):</p>
-    <h1>h1 heading <TODO>secondary text</TODO></h1>
-    <h2>h2 heading <TODO>secondary text</TODO></h2>
-    <h3>h3 heading <TODO>secondary text</TODO></h3>
-    <h4>h4 heading <TODO>secondary text</TODO></h4>
-    <h5>h5 heading <TODO>secondary text</TODO></h5>
-    <h6>h6 heading <TODO>secondary text</TODO></h6>
+    <h1>h1 heading <small>secondary text</small></h1>
+    <h2>h2 heading <small>secondary text</small></h2>
+    <h3>h3 heading <small>secondary text</small></h3>
+    <h4>h4 heading <small>secondary text</small></h4>
+    <h5>h5 heading <small>secondary text</small></h5>
+    <h6>h6 heading <small>secondary text</small></h6>
   </div>
 
   <hr>
   <!-- mark 태그: 노랑 백그라운드과 약간의 padding 적용-->
   <div class="container mt-3">
     <h1>Highlight Text</h1>    
-    <p>Use the mark element (or the .mark class) to <TODO>highlight</TODO> text.</p>
+    <p>Use the mark element (or the .mark class) to <mark>highlight</mark> text.</p>
   </div>
   
   <hr>
@@ -79,17 +79,17 @@ font-family → "Helvetica Neue", Helvetica, Arial, sans-serif.
   <div class="container mt-3">
     <h1>Abbreviations</h1>
     <p>The abbr element is used to mark up an abbreviation or acronym:</p>
-    <p>The <TODO>WHO</TODO> was founded in 1948.</p>
+    <p>The <abbr title="World Health Organization">WHO</abbr> was founded in 1948.</p>
   </div>
 
   <hr>
   <div class="container mt-3">
     <h1>Blockquotes</h1>
     <p>The blockquote element is used to present content from another source:</p>
-    <TODO>
+    <blockquote class="blockquote">
       <p>For 50 years, WWF has been protecting the future of nature. The world's leading conservation organization, WWF works in 100 countries and is supported by 1.2 million members in the United States and close to 5 million globally.</p>
-      <footer class="TODO">From WWF's website</footer>
-    </TODO>
+      <footer class="blockquote-footer">From WWF's website</footer>
+    </blockquote>
   </div>
 
   <hr>
@@ -98,7 +98,12 @@ font-family → "Helvetica Neue", Helvetica, Arial, sans-serif.
     <h1>Description Lists</h1>    
     <p>The dl element indicates a description list:</p>
 
-    <!-- TODO -->
+    <dl>
+      <dt>Coffee</dt>
+      <dd>- black hot drink</dd>
+      <dt>Milk</dt>
+      <dd>- white cold drink</dd>
+    </dl>  
    
   </div>
 
@@ -107,7 +112,7 @@ font-family → "Helvetica Neue", Helvetica, Arial, sans-serif.
   <div class="container mt-3">
     <h1>Code Snippets</h1>
     <p>Inline snippets of code should be embedded in the code element:</p>
-    <p>The following HTML elements: <TODO>...</TODO> defines a section in a document.</p>
+    <p>The following HTML elements: <code>span</code> defines a section in a document.</p>
   </div>
 
   <hr>
@@ -115,7 +120,7 @@ font-family → "Helvetica Neue", Helvetica, Arial, sans-serif.
   <div class="container mt-3">
     <h1>Keyboard Inputs</h1>
     <p>To indicate input that is typically entered via the keyboard, use the kbd element:</p>
-    <p>Use <TODO>ctrl + p</TODO> to open the Print dialog box.</p>
+    <p>Use <kbd>ctrl + p</kbd> to open the Print dialog box.</p>
   </div>
   
   
@@ -124,13 +129,13 @@ font-family → "Helvetica Neue", Helvetica, Arial, sans-serif.
   <div class="container mt-3">
     <h1>Multiple Code Lines</h1>
     <p>For multiple lines of code, use the pre element:</p>
-    <TODO>
+    <pre>
     Text in a pre element
     is displayed in a fixed-width
     font, and it preserves
     both      spaces and
     line breaks.
-    </TODO>
+    </pre>
   </div>
 
   <!--

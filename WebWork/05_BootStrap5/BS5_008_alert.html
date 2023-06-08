@@ -26,10 +26,10 @@ BS 는 간편하게 사용할수 있는 'alert 메세지' 를 제공
   <div class="container mt-3">
     <h2>Alert</h2>
     <p><code>.alert</code> 와 <code>.alert-*</code> 클래스 사용</p>
-    <div class="TODO">
+    <div class="alert alert-success">
       <strong>.alert-success</strong> This alert box could indicate a successful or positive action.
     </div>
-    <div class="TODO">
+    <div class="alert alert-info">
       <strong>.alert-info</strong> This alert box could indicate a neutral informative change or action.
     </div>
     <div class="TODO">
@@ -57,8 +57,8 @@ BS 는 간편하게 사용할수 있는 'alert 메세지' 를 제공
   <div class="container mt-3">
     <h2>Alert Links</h2>
     <p><code>.alert-link</code> 클래스 를 <code>&lt;a&gt;</code> 에 사용</p>
-    <div class="TODO">
-      <strong>Success!</strong> You should <a href="#" class="TODO">read this message</a>.
+    <div class="alert alert-success">
+      <strong>Success!</strong> You should <a href="#" class="alert-link">read this message</a>.
     </div>
     <div class="TODO">
       <strong>Info!</strong> You should <a href="#" class="TODO">read this message</a>.
@@ -90,8 +90,8 @@ BS 는 간편하게 사용할수 있는 'alert 메세지' 를 제공
     <p><code>.alert-dismissible</code> class 를 container 에 추가하고
       <code>.close</code> 와 <code>data-bs-dismiss="alert"</code> 를
       클릭했을때 alert 닫기 동작을 하는 element 에 주면 된다. ex) link 나 button</p>
-    <div class="alert TODO">
-      <button type="button" class="btn-close" TODO></button>
+    <div class="alert alert-success alert-dismissible">
+      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
       <strong>Success!</strong> This alert box could indicate a successful or positive action.
     </div>
     <div class="alert TODO">
@@ -129,7 +129,7 @@ BS 는 간편하게 사용할수 있는 'alert 메세지' 를 제공
   <div class="container mt-3">
     <h2>Alert 닫기 + 애니메이션</h2>
     <p><code>.fade</code> 와 <code>.show</code> 는 서서히 사라지는(나타나는) 애니메이션 효과</p>
-    <div class="alert alert-success alert-dismissible TODO">
+    <div class="alert alert-success alert-dismissible fade show">
       <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
       <strong>Success!</strong> This alert box could indicate a successful or positive action.
     </div>
