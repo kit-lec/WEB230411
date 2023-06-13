@@ -1,4 +1,4 @@
-package com.lec.spring.di03;
+package com.lec.spring.di04;
 
 //JAVA 를 이용한 DI 설정
 //클래스 이름앞에 반드시 어노테이션 명시 필요
@@ -12,9 +12,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class Config03 {
+public class Config04 {
 
-    public Config03() {
+    public Config04() {
         System.out.println("Config03() 생성");
     }
 
@@ -22,6 +22,12 @@ public class Config03 {
     public Score score1(){
         return new Score(100, 80, 75, "좋아요");
     }
+
+    @Bean(name = "Kim")    // "Kim" 이라는 이름의 Score 타입 bean 생성
+    public Score score2(){
+        return new Score(24, 42, 64, "나빠요");
+    }
+
 
     @Bean
     public Student stu1(){
