@@ -1,14 +1,14 @@
 package com.lec.spring.controller1;
 
 
+import com.lec.spring.common.U;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -208,7 +208,7 @@ public class HomeController {
 
         public String getAddress(){
             return "역삼동";
-        }
+        }   // address 라는 '읽기속성 property'
     }
 
     @RequestMapping("/fff")
@@ -218,7 +218,77 @@ public class HomeController {
     }
 
 
-    // TODO
+    //----------------------------------------------------------------------
+    /**
+     * 특정 request method 에 동작하는 handler 설정 가능
+     *
+     * @RequestMapping ← 모든 (혹은 특정) request method 에 대해서 동작
+     *
+     * @GetMapping, @PostMapping, @PutMapping .. ← 특정 request method 에 대해 동작
+     *    단일 request method 에서만 동작하는 핸들러는 이를 사용하는게 간편하다
+     */
+
+    @GetMapping("/get")
+    @ResponseBody
+    public String get(HttpServletRequest request) {
+        return U.requestInfo(request);
+    }
+    @PostMapping("/post")
+    @ResponseBody
+    public String post(HttpServletRequest request) {
+        return U.requestInfo(request);
+    }
+    @PutMapping("/put")
+    @ResponseBody
+    public String put(HttpServletRequest request) {
+        return U.requestInfo(request);
+    }
+    @PatchMapping("/patch")
+    @ResponseBody
+    public String patch(HttpServletRequest request) {
+        return U.requestInfo(request);
+    }
+    @DeleteMapping("/delete")
+    @ResponseBody
+    public String delete(HttpServletRequest request) {
+        return U.requestInfo(request);
+    }
+    // Get, Post <- 두가지 request method 에 대해 동작시키기
+    @RequestMapping(value = "/getpost", method = {RequestMethod.GET, RequestMethod.POST})
+    @ResponseBody
+    public String getpost(HttpServletRequest request) {
+        return U.requestInfo(request);
+    }
+
+    // 동일 url 에 대해서도 서로 다른 request method 에 따라 '다른 동작' 을 수행할 경우
+
+    @GetMapping("/action")
+    @ResponseBody
+    public String action1(HttpServletRequest request) {
+        return U.requestInfo(request);
+    }
+    @PostMapping("/action")
+    @ResponseBody
+    public String action2(HttpServletRequest request) {
+        return U.requestInfo(request);
+    }
+    @PutMapping("/action")
+    @ResponseBody
+    public String action3(HttpServletRequest request) {
+        return U.requestInfo(request);
+    }
+    @DeleteMapping("/action")
+    @ResponseBody
+    public String action4(HttpServletRequest request) {
+        return U.requestInfo(request);
+    }
+
+    // 서로 다른 url 에 대해, 동일 handler 에서 처리 가능
+    @RequestMapping(value = {"/act1", "/aaa/act2", "/aaa/bbb/act3"})
+    @ResponseBody
+    public String act(HttpServletRequest request) {
+        return U.requestInfo(request);
+    }
 
 
 }  //  end controller

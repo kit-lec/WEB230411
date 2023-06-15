@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <h1>Standard Expression Syntax</h1>
+  <hr>
+  <h3>Literals</h3>
+  <p th:text="10 + 20"></p>
+  <p th:text="10 * 20"></p>
+  <p th:text="10 - 20"></p>
+  <p th:text="10 / 20"></p>
+
+  <p th:text="10 - 2 * 4"></p>
+  <p th:text="(10 - 2) * 4"></p>
+
+  <p th:text="John"></p>
+  <p th:text="John + Doe"></p>
+  <p th:text="'John'"></p>
+  <p th:text='John'></p>  <!-- 내부적으로 "John" 으로 파싱 -->
+  <!-- <p th:text='"John"'></p> -->  <!-- 내부적으로 ""John"" 으로 파싱됨.  -->
+
+  <p th:text="'What\'s up?'"></p>
+
+  <hr>
+  <p th:text="'Jane' + 'Doe'"></p>
+  <p th:text="Mike + 20 + 10"></p>
+  <p th:text="Mike + (20 + 10)"></p>
+  <p th:text="20 + 10 + Mike"></p>
+
+  <hr>
+  <p th:text="20 > 10"></p>
+  <p th:text="20 <= 10"></p>
+  <p th:text="true"></p>
+  <p th:text="false"></p>
+  <p th:text="null"></p>
+
+  <hr>
+  <!-- <p th:text="true && false"></p> --> <!-- &&, || 연산자 없다 -->
+  <p th:text="true and false"></p>
+
+  <p th:text="not true"></p>
+  <p th:text="!true"></p>
+
+  <p th:text="(10 > 4) ? 'big' : 'small'"></p>
+
+  <!-- no operation -->
+  <p th:text="_"></p>
+
+  <hr>
+  <h3>Variable Expressions: ${...}</h3>
+  <p>OGNL(Object-Graph navigation Languege) expression 구문 사용.  context 내의 variables 들을 표현</p>
+
+  <p th:text="${'aaa'}"></p>
+  <p th:text='${"aaa"}'></p>
+  <p th:text="${'aaa' + 'bbb'}"></p>
+  <p th:text="${'aaa' + 10 + 'bbb'}"></p>
+  <p th:text="${aaa}"></p>   <!-- 존재하지 않는 개체/변수 는 렌더링 안함 -->
+  <!-- <p th:text="${aaa + bbb}"></p> -->  <!-- 에러!  존재하지 않는 객체/변수 끼리 연산 불가 -->
+
+  <!-- Variable expression  에서 ', "" escaping -->
+  <p th:text="${'What''s up?'}"></p>
+  <p th:text='${"""hi"""}'></p>
+
+  <hr>
+  <p th:text="${10 + 20}"></p>
+  <p th:text="${10 - 20}"></p>
+  <p th:text="${10 * 20}"></p>
+  <p th:text="${10 / 20}"></p>  <!-- 0!  헉!!   실제 Java 객체 사용하는 것과 같다. -->
+
+  <!-- 표현식 안에서는 &&, ||, !, and, or, not 사용 가능-->
+  <p th:text="${true && false}"></p>
+  <p th:text="${true || false}"></p>
+
+  <p th:text="${true and false}"></p>
+  <p th:text="${true or false}"></p>
+
+
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>

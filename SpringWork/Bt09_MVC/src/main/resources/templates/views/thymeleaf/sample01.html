@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thymeleaf</title>
+</head>
+<body>
+  <h1 th:text="${greeting}">Thymeleaf 타임리프 Test</h1>
+  <h3 th:text="${date}">오늘 날짜</h3>
+  <h3 th:text="${name}">너의 이름은?</h3>
+  <h3 th:text="29살">너의 나이는?</h3>
+
+  <!-- 표준 html/xml 주석은 thymeleaf 에서도 사용가능, response 됨 -->
+  <!--/* parser-level 주석. 파싱될때 완전하게 제거된다. response 안됨 */-->
+
+  <hr>
+  <div th:text='${"greeting"}'></div>
+  <div th:text='${greeting}'></div>
+  <div th:text='${"<b>" + greeting + "</b>"}'></div>
+  <div th:utext='${"<b>" + greeting + "</b>"}'></div>
+
+
+</body>
+</html>

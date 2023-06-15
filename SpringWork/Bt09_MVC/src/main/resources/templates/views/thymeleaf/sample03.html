@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Conditional Expressions</title>
+</head>
+<body>
+  <h1>Conditional expressions</h1>
+  <hr>
+  <h3>If-then:(if) ? (then)</h3>
+
+  <p th:text="${true} ? 참"></p>
+  <p th:text="${10 > 5} ? 'True'"></p>
+  <p th:text="${10 < 5} ? 'False'"></p>
+  <p th:text="${10 / 5 == 2} ? ${'참' + '입니다'}"></p>
+
+  <hr>
+  <h3>If-then-else: (if) ? (then) : (else)</h3>
+  <p th:text="${13 % 2 == 0} ? 'even' : 'odd'"></p>
+  <p th:text="${20 % 2 == 0} ? 'even' : 'odd'"></p>
+
+  <!-- null 값은 거짓으로 판정된다 -->
+  <p th:text="${null} ? '참' : '거짓'"></p>
+  <p th:text="${num4} ? '참' : '거짓'"></p>
+
+  <hr>
+  <h3>Default: (value) ?: (defaultvalue)</h3>
+  <p th:text="${num1} ?: '값이 없습니다'"></p>
+  <p th:text="${num2} ?: '값이 없습니다'"></p>
+  <p th:text="${num3} ?: '값이 없습니다'"></p>  <!-- "" 빈 문자열도 없는 값으로 판정 -->
+  <p th:text="${num4} ?: '값이 없습니다'"></p>
+  <p th:text="${num5} ?: '값이 없습니다'"></p>
+
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>
