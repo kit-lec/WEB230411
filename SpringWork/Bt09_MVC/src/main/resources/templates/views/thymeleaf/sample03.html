@@ -31,6 +31,47 @@
   <p th:text="${num4} ?: '값이 없습니다'"></p>
   <p th:text="${num5} ?: '값이 없습니다'"></p>
 
+  <hr>
+  <h2>배열, List, Map</h2>
+  <div th:text="${arr1}">내용</div>
+  <div th:text="${arr2}">내용</div>
+  <div th:text="${list1}">내용</div>
+  <div th:text="${list2}">내용</div>
+  <div th:text="${map1}">내용</div>
+  <div th:text="${map2}">내용</div>
+
+  <div th:text="${arr1[0]}"></div>
+  <div th:text="${arr1[1]}"></div>
+  <div th:text="${arr1[4]}"></div>
+  <!-- <div th:text="${arr1[10]}"></div> -->  <!-- index 벗어나면? 에러 -->
+
+  <div th:text="${arr2[0]}"></div>
+  <div th:text="${arr2[1]}"></div>
+  <div th:text="${arr2[1].name}"></div> <!-- .property 값.   getName() -->
+  <div th:text="${arr2[1].regdate}"></div>
+  <!-- <div th:text="${arr2[1].age}"></div> -->  <!-- getAge()  age property 없으니 에러! -->
+
+  <div th:text="${arr2[1].nick}"></div>
+  <div th:text="${arr2[1].regDateTime}"></div>
+
+  <div th:text="${list1[0]}"></div> <!-- List 에도 배열처럼 [] 사용하여 접근 가능.-->
+  <div th:text="${list1[1]}"></div>
+
+  <div th:text="${list2[0].name}"></div>
+  <div th:text="${list2[1].name}"></div>
+
+  <hr>
+
+  <div th:text="${map1[0]}"></div>  <!-- key:0  의 값 -->
+  <div th:text="${map1[5]}"></div>  <!-- 없는 key 값은? -->
+
+  <div th:text="${map2[AAA]}"></div> <!-- key: AAA 의 값 -->
+  <div th:text="${map2.AAA}"></div>  <!--   .key로 value 접근 가능 -->
+
+  <div th:text="${map2[XXX]}"></div>
+  <!-- <div th:text="${map2.XXX}"></div> -->  <!-- 에러: XXX property 를 찾으려 함 -->
+
+  <div th:text="${map2.BBB.name}"></div>  <!-- map2.get('BBB').getName() -->
   <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </body>
 </html>
