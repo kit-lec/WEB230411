@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Link URLs</title>
+</head>
+<body>
+    <h1>Link URLS</h1>
+    <hr>
+    <div><a th:href="@{http://localhost:8093/thymeleaf/sample01}">sample01</a></div>
+    <div><a th:href="@{http://localhost:8093/sample01}">sample01</a></div>
+    <div><a th:href="@{'http://localhost:8093' + '/thymeleaf' + '/sample01'}">sample01</a></div>
+    <div><a th:href="@{'http://localhost:8093' + ${aaa} + '/sample01'}">sample01</a></div>
+
+    <div><a th:href="@{/sample01}">sample01</a></div>
+    <div><a th:href="@{/thymeleaf/sample01}">sample01</a></div>
+
+    <div><a th:href="@{~/sample01}">sample01</a></div>
+
+    <div><a th:href="@{/sample01?p1=aaa&p2=bbb}">sample01</a></div>
+    <div><a th:href="@{/sample01(p1='aaa', p2='bbb')}">sample01</a></div>
+    <div><a th:href="@{/sample01(pa=${name}, p2=${age})}">sample01</a></div>
+
+
+
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

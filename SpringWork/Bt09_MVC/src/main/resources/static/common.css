@@ -1,0 +1,8 @@
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th, td {padding: 5px;}
+th {color: blue;}
+h3 {color: brown;}
+body {margin-bottom:400px}

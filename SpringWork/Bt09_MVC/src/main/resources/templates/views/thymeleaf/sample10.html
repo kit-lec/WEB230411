@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Fragment</title>
+</head>
+<body>
+  <h1>Include template fragments</h1>
+  <hr>
+
+  <!--
+    th:insert => 자식으로 fragment 삽입
+    th:replace => 해당 element 를 fragment 로 치환
+-->
+
+  <th:block th:with="month=${#temporals.month(now)}">
+    <h2 th:insert="~{thymeleaf/fragments/header::header}"></h2>
+    <hr>
+    <h2>본문입니다</h2>
+    <ul>
+      <li>지금은 [[${month}]] 월입니다</li>
+      <li>올해는 [[${#temporals.year(now)}]]</li>
+    </ul>
+
+    <th:block th:insert="~{thymeleaf/fragments/footer}"></th:block>
+
+    <section th:insert="~{thymeleaf/fragments/footer::footer1}"></section>
+    <section th:replace="~{thymeleaf/fragments/footer::footer1}"></section>
+
+  </th:block>
+
+
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>
+
+

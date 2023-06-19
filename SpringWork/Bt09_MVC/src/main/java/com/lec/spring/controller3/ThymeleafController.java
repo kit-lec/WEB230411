@@ -1,6 +1,7 @@
 package com.lec.spring.controller3;
 
 import com.lec.spring.domain.Member;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -172,7 +173,59 @@ public class ThymeleafController {
         model.addAttribute("options", Arrays.asList("AAAA", "BBB", "CCC", "DDD"));  // List<>
     }
 
-    // TODO
+    /****************************************************
+     * Link URLs
+     *     Absolute URL   @{http:// … }   ← protocal 로 시작
+     *     Context-relative URL    @{/ … }  ←  / 으로 시작
+     *     Server-relative URL     @{~ … }  ←  ~ 으로 시작
+     */
+
+    @GetMapping("/sample07")
+    public void sample7(Model model, HttpServletRequest request){
+        model.addAttribute("aaa", "/thymeleaf");
+
+        model.addAttribute("name", "John");
+        model.addAttribute("age", 67);
+    }
+
+    /****************************************************
+     * Setting Attribute Values
+     *     th:attribute = "..."
+     *     혹은
+     *     th:attr="attribute=..."
+     */
+
+    @GetMapping("/sample08")
+    public void sample8(Model model){
+        model.addAttribute("value1", "John");
+        model.addAttribute("url1", "sample01");
+        model.addAttribute("select1", "volvo");
+    }
+
+    /**
+     *  <th:block>
+     */
+    @GetMapping("/sample09")
+    public void sample09(Model model){
+        model.addAttribute("arr", arr2);
+    }
+
+    /****************************************************
+     * Template layout
+     *   https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#template-layout
+     *
+     * Including template fragments
+     *
+     *  ~{...}  ← Fragment expression
+     *    https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#fragments
+     *
+     *  include, replace 되는 fragment 도 바깥쪽 변수 사용 가능.
+     */
+
+    @GetMapping("/sample10")
+    public void sample10(Model model){
+        model.addAttribute("now", LocalDateTime.now());
+    }
 
 }
 
