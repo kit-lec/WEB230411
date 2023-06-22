@@ -19,4 +19,10 @@ public interface PostRepository {
     // 전체 글 목록 : 최신순  (SELECT)
     List<Post> findAll();
 
+    // 특정 id 글 수정 (제목, 내용) (UPDATE)
+    int update(Post post);
+
+    // 특정 id 글 삭제 (DELETE)
+    int delete(Post post);
+
 }

@@ -48,19 +48,31 @@ public class BoardServiceImpl implements BoardService {
         return postRepository.findAll();
     }
 
+    // 특정 id 의 글 읽어오기 (SELECT)
+    // 조회수 증가 없슴
     @Override
     public Post selectById(long id) {
-        return null;
+        Post post = postRepository.findById(id);
+        return post;
     }
 
+    // 특정 id 글 수정하기 (제목, 내용) (UPDATE)
     @Override
     public int update(Post post) {
-        return 0;
+        return postRepository.update(post);
     }
 
+    // 특정 id 의 글 삭제하기 (DELETE)
     @Override
     public int deleteById(long id) {
-        return 0;
+        int result = 0;
+
+        Post post = postRepository.findById(id);
+        if(post != null){
+            result = postRepository.delete(post);
+        }
+
+        return result;
     }
 
 }
