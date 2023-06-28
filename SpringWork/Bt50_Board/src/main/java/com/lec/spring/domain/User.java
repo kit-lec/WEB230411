@@ -1,5 +1,6 @@
 package com.lec.spring.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -17,6 +18,7 @@ public class User {
     private String password;   // 회원 비밀번호
 
     @ToString.Exclude   // Lombok 의 ToString에서 제외할 필드
+    @JsonIgnore
     private String re_password;  // 비밀번호 확인 입력
 
     private String name;  // 회원 이름
@@ -24,6 +26,7 @@ public class User {
 
     @ToString.Exclude
     @Builder.Default
+    @JsonIgnore
     private List<Authority> authorities = new ArrayList<>();
 
     public void addAuthority(Authority... authorities){

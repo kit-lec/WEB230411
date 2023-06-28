@@ -58,8 +58,43 @@ public class SecurityConfig {
                         .loginProcessingUrl("/user/login")  // "/user/login" url 로 POST request 가 들어오면 시큐리티가 낚아채서 처리, 대신 로그인을 진행해준다(인증).
                                                             // 이와 같이 하면 Controller 에서 /user/login (POST) 를 굳이 만들지 않아도 된다!
                                                             // 위 요청이 오면 자동으로 UserDetailsService 타입 빈객체의 loadUserByUsername() 가 실행되어 인증여부 확인진행 <- 이를 제공해주어야 한다.
-                        // TODO
-                        .defaultSuccessUrl("/"))
+                        .defaultSuccessUrl("/")  // '직접 /login' → /loginOk 에서 성공하면 "/" 로 이동시키기
+                                                // 만약 다른 특정페이지에 진입하려다 로그인 하여 성공하면 해당 페이지로 이동 (너무 편리!)
+
+                        // 로그인 성공직후 수행할코드
+                        //.successHandler(AuthenticationSuccessHandler) // 로그인 성공후 수행할 코드.
+                        .successHandler(new CustomLoginSuccessHandler("/home"))
+
+                        // 로그인 실패하면 수행할 코드
+                        // .failureHandler(AuthenticationFailureHandler)
+                        .failureHandler(new CustomLoginFailureHandler())
+                )
+                /********************************************
+                 * ③ 로그아웃 설정
+                 * .logout(LogoutConfigurer)
+                 ********************************************/
+                .logout(httpSecurityLogoutConfigurer -> httpSecurityLogoutConfigurer
+                        .logoutUrl("/user/logout")        // 로그아웃 수행 url
+                        //.logoutSuccessUrl("/login?logout")  // 로그아웃 성공후 redirect url
+                        .invalidateHttpSession(false)    // session invalidate (디폴트 true)
+                        // 이따가 CustomLogoutSuccessHandler 에서 꺼낼 정보가 있기 때문에
+                        // false 로 세팅한다
+
+                        // .deleteCookies("JSESSIONID")  // 쿠키 제거
+
+                        // 로그아웃 성공후 수행할 코드
+                        // .logoutSuccessHandler(LogoutSuccessHandler)
+                        .logoutSuccessHandler(new CustomLogoutSuccessHandler())
+                )
+                /********************************************
+                 * ④ 예외처리 설정
+                 * .exceptionHandling(ExceptionHandlingConfigure)
+                 ********************************************/
+                .exceptionHandling(httpSecurityExceptionHandlingConfigurer -> httpSecurityExceptionHandlingConfigurer
+                        // 권한(Authorization) 오류 발생시 수행할 코드
+                        // .accessDeniedHandler(AccessDeniedHandler)
+                        .accessDeniedHandler(new CustomAccessDeniedHandler())
+                )
 
 
 

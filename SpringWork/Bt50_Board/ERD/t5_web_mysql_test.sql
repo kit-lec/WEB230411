@@ -1,0 +1,13 @@
+SHOW TABLES;
+
+SELECT TABLE_NAME FROM information_schema.TABLES
+WHERE TABLE_SCHEMA = 'mydb2304'
+AND TABLE_NAME LIKE 't5_%'
+;
+
+SELECT * FROM t5_authority;
+SELECT * FROM t5_user ORDER BY id DESC;
+SELECT * FROM t5_user_authorities;
+SELECT * FROM t5_post ORDER BY id DESC;
+SELECT * FROM t5_comment ORDER BY id DESC;
+SELECT * FROM t5_attachment ORDER BY id DESC;
