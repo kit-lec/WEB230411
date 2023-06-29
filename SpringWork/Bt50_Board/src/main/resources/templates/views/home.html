@@ -9,6 +9,9 @@
     <title>HOME</title>
 </head>
 <body>
+    <!--/* 인증 헤더 */-->
+    <th:block th:insert="~{common/header::header}"></th:block>
+
     <div class="container mt-3">
         <h1>Home</h1>
         <a class="btn btn-primary" th:href="@{/board/list}">목록보기</a>
