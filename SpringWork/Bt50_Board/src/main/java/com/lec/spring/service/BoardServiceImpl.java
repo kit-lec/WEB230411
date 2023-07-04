@@ -19,7 +19,14 @@ import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.Map;
 
@@ -103,7 +110,10 @@ public class BoardServiceImpl implements BoardService {
                 Attachment file = upload(e.getValue());
 
                 // 성공하면 DB 에도 저장
-                // TODO
+                if(file != null){
+                    file.setPost_id(id);    // FK 설정
+                    attachmentRepository.save(file);   // INSERT
+                }
             }
         }
     } // end addFile()
@@ -127,9 +137,38 @@ public class BoardServiceImpl implements BoardService {
         if(file.exists()){  // 이미 존재하는 파일명!  중복된다면 다른 이름으로 변경하여 저장 시도
             // a.txt => a_2378142783946.txt  : time stamp 값을 활용할거다!
 
-            // TODO
+            int pos = fileName.lastIndexOf(".");
+            if(pos > -1){  // 확장자가 있는 파일의 경우
+                String name = fileName.substring(0, pos);   // 파일 '이름'
+                String ext = fileName.substring(pos + 1);   // 파일 '확장자'
 
+                // 중복방지를 위한 새로운 이름 (현재시간 ms) 를 파일명에 추가
+                fileName = name + "_" + System.currentTimeMillis() + "." + ext;
+            } else {   // 확장자가 없는 파일의 경우
+                fileName += "_" + System.currentTimeMillis();
+            }
         }
+        //  저장할 파일명
+        System.out.println("fileName: " + fileName);
+
+        // java.nio.*
+        Path copyOfLocation = Paths.get(new File(uploadDir + File.separator + fileName).getAbsolutePath());
+        System.out.println(copyOfLocation);
+
+        try{
+            Files.copy(   // 물리적으로 저장
+                    multipartFile.getInputStream(),
+                    copyOfLocation,
+                    StandardCopyOption.REPLACE_EXISTING    // 기존에 존재하면 덮어쓰기
+            );
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        attachment = Attachment.builder()
+                .filename(fileName)     // 저장된 이름
+                .sourcename(sourceName)  // 원본이름
+                .build();
 
         return attachment;
     } // end load();
@@ -143,8 +182,37 @@ public class BoardServiceImpl implements BoardService {
     public Post detail(long id){
         postRepository.incViewCnt(id);
         Post post = postRepository.findById(id);
+
+        if(post != null){
+            // 첨부파일(들) 정보 가져오기
+            List<Attachment> fileList = attachmentRepository.findByPost(post.getId());
+            // 이미지 파일 여부 세팅
+            setImage(fileList);
+
+            post.setFileList(fileList);
+        }
+
         return post;
     }
+
+    // 이미지 파일 세팅 여부
+    private void setImage(List<Attachment> fileList){
+        // upload 실제 물리적인 경로
+        String realPath = new File(uploadDir).getAbsolutePath();
+
+        for(Attachment attachment : fileList){
+            BufferedImage imgData = null;
+            File f = new File(realPath, attachment.getFilename());   // 첨부파일에 대한 File 객체
+            try{
+                imgData = ImageIO.read(f);   // 이미지가 아니면 null 리턴
+            } catch (IOException e) {
+                System.out.println("파일존재안함: " + f.getAbsolutePath() + " [" + e.getMessage() + "]");
+            }
+            if(imgData != null) attachment.setImage(true);
+        }
+    }
+
+
 
     // 글 목록
     @Override
@@ -207,6 +275,19 @@ public class BoardServiceImpl implements BoardService {
     @Override
     public Post selectById(long id) {
         Post post = postRepository.findById(id);
+
+        if(post != null){
+            // 첨부파일 정보 가져오기
+            List<Attachment> fileList = attachmentRepository.findByPost(post.getId());
+            setImage(fileList); // 이미지 파일 여부 세팅
+            post.setFileList(fileList);
+
+        }
+
+
+
+
+
         return post;
     }
 
@@ -216,6 +297,47 @@ public class BoardServiceImpl implements BoardService {
         return postRepository.update(post);
     }
 
+    @Override
+    public int update(Post post, Map<String, MultipartFile> files, Long[] delfile) {
+        int result = 0;
+        
+        result = postRepository.update(post);
+        
+        // 첨부파일 추가
+        addFiles(files, post.getId());
+        
+        // 삭제할 첨부파일들은 삭제하기
+        if(delfile != null){
+            for(Long fileId : delfile){
+                Attachment file = attachmentRepository.findById(fileId);
+                if(file != null){
+                    delFile(file);  // 물리적 삭제
+                    attachmentRepository.delete(file);   // DB에서 삭제
+                }
+            }
+        }
+        
+        return result;
+    }
+
+    // 특정 첨부파일을 물리적으로 삭제
+    private void delFile(Attachment file) {
+        String saveDirectory = new File(uploadDir).getAbsolutePath();
+
+        File f = new File(saveDirectory, file.getFilename());  // 물리적으로 저장된 파일의 File 객체
+        System.out.println("삭제시도---> " + f.getAbsolutePath());
+
+        if(f.exists()){
+            if (f.delete()) { // 삭제!
+                System.out.println("삭제 성공");
+            } else {
+                System.out.println("삭제 실패");
+            }
+        } else {
+            System.out.println("파일이 존재하지 않습니다.");
+        }
+    }
+
     // 특정 id 의 글 삭제하기 (DELETE)
     @Override
     public int deleteById(long id) {
@@ -223,6 +345,15 @@ public class BoardServiceImpl implements BoardService {
 
         Post post = postRepository.findById(id);
         if(post != null){
+            // 물리적으로 저장된 첨부파일(들) 삭제
+            List<Attachment> fileList = attachmentRepository.findByPost(id);
+            if(fileList != null && fileList.size() > 0){
+                for(var file : fileList){
+                    delFile(file);
+                }
+            }
+            
+            // 글삭제 (참조하는 첨부파일, 댓글 등도 같이 삭제될것이다. ON DELETE CASCADE )
             result = postRepository.delete(post);
         }
 

@@ -35,6 +35,10 @@ public interface BoardService {
     // 특정 id 글 수정하기 (제목, 내용) (UPDATE)
     int update(Post post);
 
+    int update(Post post
+               , Map<String, MultipartFile> files
+               , Long[] delfile);
+
     // 특정 id 의 글 삭제하기 (DELETE)
     int deleteById(long id);
 }
